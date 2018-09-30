@@ -7,26 +7,28 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/Bootstrap-sticky-footer.css" type="text/css">
     <title>ことコレ</title>
   </head>
   <body>
     <header>
       <nav class="navbar navbar-dark bg-dark">
       <!-- Navbar content -->
-      <p>hogehoge</p>
+      <p class="text-light">hogehoge</p>
       </nav>
     </header>
     
     <div>
       <h1>HELLO!!</h1>
     </div>
-    
-    <footer>
-      <nav class="navbar navbar-dark bg-dark">
-        <!-- Navbar content -->
-        <p>Copy right</p>
-      </nav>
+
+    <footer class="footer">
+      <div class="container">
+        <!-- <span class="text-light">Place sticky footer content here.</span> -->
+        <p class="text-center text-light">Copy right @ 
+          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">kakedashi</a></u>
+        </p>
+      </div>
     </footer>
     
 
