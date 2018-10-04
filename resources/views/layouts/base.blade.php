@@ -39,7 +39,7 @@
       <div class="container fixed-bottom">
         <!-- <span class="text-light">Place sticky footer content here.</span> -->
         <p class="text-center text-light">Copy right @ 
-          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">Github by kakedashi</a></u>
+          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">GitHub by kakedashi</a></u>
         </p>
       </div>
     </footer>
