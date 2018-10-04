@@ -12,21 +12,34 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-dark bg-dark">
-      <!-- Navbar content -->
-      <p class="text-light">hogehoge</p>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand ml-5" href="#">ことコレ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-light mr-5" href="#">新規登録</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light mr-5" href="#">ログイン</a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
     
-    <div>
-      <h1>HELLO!!</h1>
-    </div>
+    <main>
+        <h1 class="mt-5">HELLO!!</h1>
+    </main>
 
     <footer class="footer">
       <div class="container">
         <!-- <span class="text-light">Place sticky footer content here.</span> -->
         <p class="text-center text-light">Copy right @ 
-          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">kakedashi</a></u>
+          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">Github by kakedashi</a></u>
         </p>
       </div>
     </footer>
