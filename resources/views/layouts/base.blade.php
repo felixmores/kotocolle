@@ -32,11 +32,11 @@
     </header>
     
     <main>
-        <h1 class="mt-5">HELLO!!</h1>
+        @yield('content')
     </main>
 
     <footer class="footer">
-      <div class="container fixed-bottom">
+      <div class="container">
         <!-- <span class="text-light">Place sticky footer content here.</span> -->
         <p class="text-center text-light">Copy right @ 
           <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">GitHub by kakedashi</a></u>
