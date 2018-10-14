@@ -5,27 +5,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/Bootstrap-sticky-footer.css" type="text/css">
-    <title>ことコレ</title>
+    <title>@yield('title')</title>
   </head>
   <body>
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand ml-5" href="#">ことコレ</a>
+        <a class="navbar-brand ml-5" href="{{ url('/') }}">
+          {{ config('app.name', 'ことコレ') }}
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link text-light mr-5" href="#">新規登録</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light mr-5" href="#">ログイン</a>
-            </li>
+            @guest
+              <li class="nav-item">
+                <a class="nav-link text-light mr-5" href="{{ route('register') }}">新規登録</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-light mr-5" href="{{ route('login') }}">ログイン</a>
+              </li>
+            @else
+              <li class="nav-item">
+                {{ Auth::user()->name }}
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                  ログアウト
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>
+            @endguest
           </ul>
         </div>
       </nav>

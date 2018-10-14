@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title', 'ことコレ')
+
 @section('content')
   <h1 class="text-center mt-5 pt-5">ことコレ</h1>
   <h3 class="text-center mb-5">～ことばコレクション～</h3>
