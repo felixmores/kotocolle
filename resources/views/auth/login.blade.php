@@ -1,5 +1,7 @@
 @extends('layouts.base')
 
+@section('title', 'ログイン')
+
 @section('content')
     <div class="container">
         <div class="card mt-5 border border-primary">
