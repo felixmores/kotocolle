@@ -3,7 +3,7 @@
 @section('title', 'パスワード発行メール送信')
 
 @section('content')
-    <div class="container">
+    <<div class="container">
         <div class="card border mt-5 border-primary">
             <div class="card-header p-4 h3 text-center text-light bg-primary">パスワードを忘れた場合</div>
             
