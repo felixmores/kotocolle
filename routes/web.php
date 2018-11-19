@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
+//LP表示
 Route::get('/', 'IndexController@index');
 Auth::routes();
+
+//マイページ表示
+Route::get('/mypage', 'WordController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
