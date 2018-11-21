@@ -18,7 +18,19 @@
           @foreach ($my_words as $my_word)
             <tr>
               <td>{{$my_word->word}}</td>
-              <td>{{$my_word->lank}}</td>
+              @switch($my_word->lank)
+                @case(1)
+                  <td>金言</td>
+                  @break
+                @case(2)
+                  <td>銀言</td>
+                  @break
+                @case(3)
+                  <td>銅言</td>
+                  @break
+                @default
+                  <td>{{$my_word->lank}}</td>
+              @endswitch
             </tr>
           @endforeach
           </tbody>
