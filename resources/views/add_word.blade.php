@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="container">
-    <div class="card border border-primary mt-5">
+    <div class="card border border-primary mt-5 w-75 mx-auto">
       <div class="card-header p-4 h3 text-center text-light bg-primary">新しい言葉を登録する</div>
       <div class="card-body">
         <form action="" method="POST">
@@ -18,7 +18,7 @@
           <div class="form-group row">
             <label for="lank" class="col-form-label col-sm-2">ランク</label>
             <div class="col-sm-10">
-              <select class="form-control" id="lank">
+              <select class="form-control w-25" id="lank">
                 <option>金言</option>
                 <option>銀言</option>
                 <option>銅言</option>
@@ -28,7 +28,12 @@
           <div class="form-group row">
             <label for="image" class="col-form-label col-sm-2">画像</label>
             <div class="col-sm-10">
-              <input type="file" class="form-control-file" id="image">
+              <label>
+                <span class="btn btn-primary">
+                  画像をアップロード
+                  <input type="file" class="form-control-file" id="image" style="display:none">
+                </span>
+              </label>
             </div>
           </div>
           <fieldset class="form-group">
@@ -47,16 +52,14 @@
             </div>
           </fieldset>
           <div class="form-group row">
-            <div class="row">
-              <label for="memo" class="col-form-label col-sm-2">メモ</label>
-              <div class="col-sm-10">
-                <input type="textarea" class="form-control" id="memo">
-              </div>
+            <label for="memo" class="col-form-label col-sm-2">メモ</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" id="memo" rows="3"></textarea>
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-10">
-              <button type="submit" class="btn btn-primary btn-lg">登録</button>
+            <div class="mx-auto">
+              <button type="submit" class="btn btn-primary btn-lg px-5">登録</button>
             </div>
           </div>
         </form>

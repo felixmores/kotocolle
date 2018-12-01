@@ -10,7 +10,7 @@ class IndexController extends Controller
     //LPの表示
     public function index() {
         if (Auth::check()) {
-            return redirect()->action('WordController@index');
+            return redirect()->action('WordController@mypage_index');
         } else {
             return view('index');
         }

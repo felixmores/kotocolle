@@ -21,6 +21,9 @@ Route::get('/', 'IndexController@index');
 Auth::routes();
 
 //マイページ表示
-Route::get('/mypage', 'WordController@index');
+Route::get('/mypage', 'WordController@mypage_index');
+
+//言葉登録画面を表示
+Route::get('/mypage/add_word', 'WordController@add_word_index');
 
 Route::get('/home', 'HomeController@index')->name('home');

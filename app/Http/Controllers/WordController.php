@@ -14,9 +14,14 @@ class WordController extends Controller
     }
     
     //マイページ画面を表示
-    public function index(Request $request) {
+    public function mypage_index(Request $request) {
         $id = $request->user()->id;
         $my_words = Word::select('word', 'lank')->where('user_id', $id)->paginate(5);
         return view('mypage', ['my_words' => $my_words]);
+    }
+
+    //言葉登録画面を表示
+    public function add_word_index(Request $request) {
+        return view('add_word');
     }
 }
