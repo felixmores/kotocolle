@@ -29,7 +29,7 @@
                   <td>銅言</td>
                   @break
                 @default
-                  <td>{{$my_word->lank}}</td>
+                  <td>ランクなし</td>
               @endswitch
             </tr>
           @endforeach

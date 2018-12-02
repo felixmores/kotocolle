@@ -18,7 +18,8 @@
           <div class="form-group row">
             <label for="lank" class="col-form-label col-sm-2">ランク</label>
             <div class="col-sm-10">
-              <select class="form-control w-25" id="lank">
+              <select class="form-control w-50" id="lank">
+                <option>ランクを選択してください</option>
                 <option>金言</option>
                 <option>銀言</option>
                 <option>銅言</option>
@@ -27,13 +28,14 @@
           </div>
           <div class="form-group row">
             <label for="image" class="col-form-label col-sm-2">画像</label>
-            <div class="col-sm-10">
-              <label>
+            <div class="input-group col-sm-10">
+              <label class="input-group-btn">
                 <span class="btn btn-primary">
-                  画像をアップロード
+                  画像を選択
                   <input type="file" class="form-control-file" id="image" style="display:none">
                 </span>
               </label>
+              <input type="text" class="form-control" readonly="">
             </div>
           </div>
           <fieldset class="form-group">
