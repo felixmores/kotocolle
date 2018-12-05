@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <form action="{{ action('WordController@add_word_index') }}">
+    <form action="{{ action('WordController@add_word_index') }}" method="GET">
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg my-4 mx-auto d-block">新しい言葉を登録</button>
       </div>
