@@ -26,7 +26,7 @@ class WordRequest extends FormRequest
     {
         return [
             'word' => "required|max:30",
-            'word_image' => 'nullable|mimes:jpeg|max:500|dimensions:max_width=500,max_height=500',
+            'word_image' => 'nullable|image|mimes:jpeg,jpg|max:500|dimensions:max_width=500,max_height=500',
             'memo' => 'max:150',
         ];
     }
@@ -34,6 +34,7 @@ class WordRequest extends FormRequest
     public function messages() {
         return [
             'word.max' => '言葉は30文字までです。',
+            'word_image.image' => 'ファイルは画像を選択してください。',
             'word_image.mimes' => '画像はJPEGファイルのものを選択してください。',
             'word_image.max' => 'ファイルサイズは500KBまでです。',
             'word_image.dimensions' => '画像の大きさは幅500px、高さ500pxまでです。',

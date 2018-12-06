@@ -9,24 +9,23 @@
       <div class="card-body">
         @if (count($errors) > 0)
         <div class="card-text alert alert-warning" role="alert">
-          入力に問題がありますので、再入力してください。
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{$error}}</li>
+            @endforeach
+          </ul>
         </div>
         @endif
         @isset($alert_msg)
-        <div class="card-text alert alert-warning" role="alert">
+        <div class="card-text alert alert-danger" role="alert">
           {{$alert_msg}}
         </div>
         @endisset
-        <form action="{{ action('WordController@add_word_new') }}" method="POST">
+        <form action="{{ action('WordController@add_word_new') }}" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group row">
             <label for="word" class="col-form-label col-sm-2">言葉</label>
             <div class="col-sm-10">
-              @if ($errors->has('word'))
-              @foreach($errors->get('word') as $error)
-              <p class="text-danger font-weight-bold">{{$error}}</p>
-              @endforeach
-              @endif
               <input name="word" type="text" class="form-control" id="word" value="{{old('word')}}" required autofocus>
             </div>
           </div>
@@ -44,11 +43,6 @@
           <div class="form-group row">
             <label for="word_image" class="col-form-label col-sm-2">画像</label>
             <div class="input-group col-sm-10">
-              @if ($errors->has('image'))
-              @foreach($errors->get('image') as $error)
-              <p class="text-danger font-weight-bold">{{$error}}</p>
-              @endforeach
-              @endif
               <label class="input-group-btn">
                 <span class="btn btn-primary">
                   画像を選択
@@ -76,9 +70,6 @@
           <div class="form-group row">
             <label for="memo" class="col-form-label col-sm-2">メモ</label>
             <div class="col-sm-10">
-              @if ($errors->has('memo'))
-              <p class="text-danger font-weight-bold">{{$errors->first('memo')}}</p>
-              @endif
               <textarea name="memo" class="form-control" id="memo" rows="3">{{old('memo')}}</textarea>
             </div>
           </div>

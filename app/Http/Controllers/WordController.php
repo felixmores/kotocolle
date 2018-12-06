@@ -43,7 +43,14 @@ class WordController extends Controller
             $word->user_id = $request->user()->id;
             $word->lank = $request->lank;
             $word->memo = $request->memo;
-            $word->word_image = $request->word_image;
+
+            if ($request->file('word_image')->isValid()) {
+                $image_path = $request->word_image->store('public/word_images');
+                $word->word_image = basename($image_path);
+            } else {
+                $word->word_image = null;
+            }
+
             $word->share_flag = $request->share_radios;
             $word->save();
             return redirect('/mypage');
