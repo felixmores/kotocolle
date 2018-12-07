@@ -17,7 +17,7 @@ class WordController extends Controller
     //マイページ画面を表示
     public function mypage_index(Request $request) {
         $id = $request->user()->id;
-        $my_words = Word::select('word', 'lank')->where('user_id', $id)->paginate(5);
+        $my_words = Word::select('word', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
         return view('mypage', ['my_words' => $my_words]);
     }
 
