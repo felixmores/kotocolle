@@ -56,4 +56,9 @@ class WordController extends Controller
             return redirect('/mypage');
         }
     }
+
+    //言葉の詳細画面を表示
+    public function word_content_index(Request $request) {
+        return view('word_content');
+    }
 }

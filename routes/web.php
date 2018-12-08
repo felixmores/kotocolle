@@ -28,4 +28,7 @@ Route::get('/mypage/add_word', 'WordController@add_word_index');
 //言葉を新規登録
 Route::post('/mypage/add_word', 'WordController@add_word_new');
 
+//言葉の詳細画面を表示
+Route::get('/word_content', 'WordController@word_content_index');
+
 Route::get('/home', 'HomeController@index')->name('home');
