@@ -17,7 +17,7 @@ class WordController extends Controller
     //マイページ画面を表示
     public function mypage_index(Request $request) {
         $id = $request->user()->id;
-        $my_words = Word::select('word', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
+        $my_words = Word::select('id', 'word', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
         return view('mypage', ['my_words' => $my_words]);
     }
 
@@ -58,7 +58,7 @@ class WordController extends Controller
     }
 
     //言葉の詳細画面を表示
-    public function word_content_index(Request $request) {
+    public function word_content_index(Request $request, $id) {
         return view('word_content');
     }
 }
