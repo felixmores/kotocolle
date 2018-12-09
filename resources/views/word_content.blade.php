@@ -20,24 +20,26 @@
           <div class="col-sm-3">ランク</div>
           @switch ($word_content->lank)
             @case (1)
-              <div class="col-sm-3">金言</div>
+              <div class="col-sm-9">金言</div>
               @break
             @case (2)
-              <div class="col-sm-3">銀言</div>
+              <div class="col-sm-9">銀言</div>
               @break
             @case (3)
-              <div class="col-sm-3">銅言</div>
+              <div class="col-sm-9">銅言</div>
               @break
             @default
-              <div class="col-sm-3">ランクなし</div>
+              <div class="col-sm-9">ランクなし</div>
           @endswitch
+        </div>
+        <div class="row h5 mb-4">
           <div class="col-sm-3">公開</div>
           @switch ($word_content->share_flag)
             @case (0)
-              <div class="col-sm-3">OFF</div>
+              <div class="col-sm-9">OFF</div>
               @break
             @case (1)
-              <div class="col-sm-3">ON</div>
+              <div class="col-sm-9">ON</div>
               @break
           @endswitch
         </div>

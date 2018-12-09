@@ -54,7 +54,8 @@ class WordController extends Controller
 
             $word->share_flag = $request->share_radios;
             $word->save();
-            return redirect('/mypage');
+            $last_insert_id = $word->id;
+            return redirect()->action('WordController@word_content_index', ['id' => $last_insert_id]);
         }
     }
 
