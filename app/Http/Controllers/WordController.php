@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Word;
 use App\Http\Requests\WordRequest;
 
@@ -59,6 +60,19 @@ class WordController extends Controller
 
     //言葉の詳細画面を表示
     public function word_content_index(Request $request, $id) {
-        return view('word_content');
+        $word_content = Word::where('id', $id)->first();
+        if ($word_content) {
+            $image_name = $word_content->word_image;
+            $image_flg = false;
+            $image_exist = Storage::disk('local')->exists('public/word_images/'.$image_name);
+            if ($image_exist) {
+                $image_flg = true;
+                return view('word_content', ['word_content' => $word_content, 'image_flg' => $image_flg]);
+            } else {
+                return view('word_content', ['word_content' => $word_content, 'image_flg' => $image_flg]);
+            }
+        } else {
+            return back();
+        }
     }
 }
