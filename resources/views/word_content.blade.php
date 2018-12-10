@@ -60,9 +60,8 @@
             </form>
           </div>
           <div class="col-sm-6">
-            <form action="" method="POST">
+            <form action="{{ action('WordController@word_delete', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="POST">
               {{ csrf_field() }}
-              <input type="hidden" name="word_content" value="{{ $word_content }}">
               <button type="submit" class="btn btn-danger btn-lg">削除する</button>
             </form>
           </div>

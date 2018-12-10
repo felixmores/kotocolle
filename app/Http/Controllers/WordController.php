@@ -76,11 +76,14 @@ class WordController extends Controller
     }
 
     //言葉を削除
-    public function word_delete(Request $request) {
-        //$word_content = Word::where('id', $request->id)->first();
-        $word_image_name = $request->word_content->word_image;
+    public function word_delete(Request $request, $user_id, $word_id) {
+        $word_content = Word::find($word_id);
+        $word_image_name = $word_content->word_image;
         if ($word_image_name) {
-
+            Storage::delete('public/word_images/'.$word_image_name);
         }
+
+        $word_content->delete();
+        return redirect()->action('WordController@mypage_index');
     }
 }

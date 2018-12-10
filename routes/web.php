@@ -30,5 +30,7 @@ Route::post('/mypage/add_word', 'WordController@add_word_new');
 
 //言葉の詳細画面を表示
 Route::get('/word_content/{user_id}/{word_id}', 'WordController@word_content_index');
+//言葉を削除する
+Route::post('/word_content/{user_id}/{word_id}', 'WordController@word_delete');
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
