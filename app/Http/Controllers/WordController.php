@@ -18,7 +18,7 @@ class WordController extends Controller
     //マイページ画面を表示
     public function mypage_index(Request $request) {
         $id = $request->user()->id;
-        $my_words = Word::select('id', 'word', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
+        $my_words = Word::select('id', 'word', 'user_id', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
         return view('mypage', ['my_words' => $my_words]);
     }
 
@@ -45,7 +45,7 @@ class WordController extends Controller
             $word->lank = $request->lank;
             $word->memo = $request->memo;
 
-            if ($request->file('word_image')->isValid()) {
+            if ($request->hasfile('word_image')) {
                 $image_path = $request->word_image->store('public/word_images');
                 $word->word_image = basename($image_path);
             } else {
@@ -55,25 +55,32 @@ class WordController extends Controller
             $word->share_flag = $request->share_radios;
             $word->save();
             $last_insert_id = $word->id;
-            return redirect()->action('WordController@word_content_index', ['id' => $last_insert_id]);
+            $last_insert_user_id = $word->user_id;
+            return redirect()->action('WordController@word_content_index', ['user_id' => $last_insert_user_id, 'word_id' => $last_insert_id]);
         }
     }
 
     //言葉の詳細画面を表示
-    public function word_content_index(Request $request, $id) {
-        $word_content = Word::where('id', $id)->first();
-        if ($word_content) {
-            $image_name = $word_content->word_image;
-            $image_flg = false;
-            $image_exist = Storage::disk('local')->exists('public/word_images/'.$image_name);
-            if ($image_exist) {
-                $image_flg = true;
-                return view('word_content', ['word_content' => $word_content, 'image_flg' => $image_flg]);
+    public function word_content_index(Request $request, $user_id, $word_id) {
+        $word_content = Word::where('id', $word_id)->where('user_id', $user_id)->first();
+        if ($request->user()->id == $user_id && $word_content == true) {
+            if ($word_content->word_image) {
+                $image_name = $word_content->word_image;
             } else {
-                return view('word_content', ['word_content' => $word_content, 'image_flg' => $image_flg]);
+                $image_name = 'no_word_image.jpg';
             }
+            return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name]);
         } else {
-            return back();
+            return redirect()->action('WordController@mypage_index');
+        }
+    }
+
+    //言葉を削除
+    public function word_delete(Request $request) {
+        //$word_content = Word::where('id', $request->id)->first();
+        $word_image_name = $request->word_content->word_image;
+        if ($word_image_name) {
+
         }
     }
 }

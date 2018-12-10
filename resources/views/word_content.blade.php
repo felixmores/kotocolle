@@ -11,11 +11,9 @@
           <div class="col-sm-3">言葉</div>
           <div class="col-sm-9">{{ $word_content->word }}</div>
         </div>
-        @if ($image_flg)
         <figure class="figure row mb-4">
-          <img src="/storage/word_images/{{ $word_content->word_image }}" class="figure-img img-fluid">
+          <img src="/storage/word_images/{{ $image_name }}" class="figure-img img-fluid">
         </figure>
-        @endif
         <div class="row h5 mb-4">
           <div class="col-sm-3">ランク</div>
           @switch ($word_content->lank)
@@ -63,6 +61,8 @@
           </div>
           <div class="col-sm-6">
             <form action="" method="POST">
+              {{ csrf_field() }}
+              <input type="hidden" name="word_content" value="{{ $word_content }}">
               <button type="submit" class="btn btn-danger btn-lg">削除する</button>
             </form>
           </div>

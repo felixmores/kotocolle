@@ -17,7 +17,7 @@
           <tbody>
           @foreach ($my_words as $my_word)
             <tr>
-              <td><a href="{{ action('WordController@word_content_index', $my_word->id) }}">{{$my_word->word}}</a></td>
+              <td><a href="{{ action('WordController@word_content_index', ['user_id' => $my_word->user_id, 'word_id' => $my_word->id]) }}">{{$my_word->word}}</a></td>
               @switch($my_word->lank)
                 @case(1)
                   <td>金言</td>
