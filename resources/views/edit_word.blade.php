@@ -21,7 +21,7 @@
           {{$alert_msg}}
         </div>
         @endisset
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ action('WordController@word_update') }}" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group row">
             <label for="word" class="col-form-label col-sm-2">言葉</label>
@@ -66,11 +66,11 @@
               <legend class="col-form-label col-sm-2 pt-0">公開状態</legend>
               <div class="col-sm-10">
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="share_radios" value="1" id="share_on">
+                  <input class="form-check-input" type="radio" name="share_radios" value="1" id="share_on" {{ old('share_radios', $edit_content->share_flag) == 1 ? 'checked' : null}}>
                   <label class="form-check-label" for="share_on">公開</label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="share_radios" value="0" id="share_off" checked>
+                  <input class="form-check-input" type="radio" name="share_radios" value="0" id="share_off" {{ old('share_radios', $edit_content->share_flag) == 0 ? 'checked' : null}}>
                   <label class="form-check-label" for="share_off">非公開</label>
                 </div>
               </div>

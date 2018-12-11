@@ -34,6 +34,7 @@ Route::get('/word_content/{user_id}/{word_id}', 'WordController@word_content_ind
 Route::post('/word_content/{user_id}/{word_id}', 'WordController@word_delete');
 //言葉の編集画面を表示
 Route::get('/word_content/{user_id}/{word_id}/edit_word', 'WordController@word_edit');
-
+//言葉を更新する
+Route::post('/word_content/{user_id}/{word_id}/edit_word', 'WordController@word_update');
 
 //Route::get('/home', 'HomeController@index')->name('home');
