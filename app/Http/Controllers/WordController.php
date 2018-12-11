@@ -86,4 +86,22 @@ class WordController extends Controller
         $word_content->delete();
         return redirect()->action('WordController@mypage_index');
     }
+
+    //言葉編集画面を表示
+    public function word_edit(Request $request, $user_id, $word_id) {
+        $edit_content = Word::where('id', $word_id)->where('user_id', $user_id)->first();
+        $select_texts = [
+                            'ランクを選択してください',
+                            '金言',
+                            '銀言',
+                            '銅言',
+                        ];
+        $selected = '';
+        return view('edit_word', ['edit_content' => $edit_content, 'select_texts' => $select_texts, 'selected' => $selected]);
+    }
+
+    //言葉を更新
+    public function word_update(Request $request) {
+
+    }
 }

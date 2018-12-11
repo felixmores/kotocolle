@@ -55,7 +55,7 @@
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <form action="" method="GET">
+            <form action="{{ action('WordController@word_edit', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="GET">
               <button type="submit" class="btn btn-primary btn-lg">編集する</button>
             </form>
           </div>
