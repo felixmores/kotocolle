@@ -107,13 +107,10 @@ class WordController extends Controller
     //言葉を更新
     public function word_update(WordRequest $request, $user_id, $word_id) {
         $input_word = $request->input('word');
-        //$login_id = $request->user()->id;
 
         $same_word_num = Word::where('user_id', $user_id)->where('id', '!=', $word_id )
                         ->where('word', $input_word)->count('word');
         if ($same_word_num > 0) {
-            //$alert_msg = '以前に登録済みの言葉です。修正が必要ならば言葉詳細画面の「編集する」ボタンから修正してください。';
-            //return view('edit_word',compact('alert_msg'));
             return back()->withInput()->with('alert_msg', '以前に登録済みの言葉です。修正が必要ならば言葉詳細画面の「編集する」ボタンから修正してください。');
         } else {
             $word = Word::find($word_id);
