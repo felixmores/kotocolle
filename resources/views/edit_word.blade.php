@@ -16,17 +16,20 @@
           </ul>
         </div>
         @endif
+        @php
+        $alert_msg = session('alert_msg');
+        @endphp
         @isset($alert_msg)
         <div class="card-text alert alert-danger" role="alert">
-          {{$alert_msg}}
+          {{session('alert_msg')}}
         </div>
         @endisset
-        <form action="{{ action('WordController@word_update') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ action('WordController@word_update', ['user_id' => $edit_content->user_id, 'word_id' => $edit_content->id]) }}" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group row">
             <label for="word" class="col-form-label col-sm-2">言葉</label>
             <div class="col-sm-10">
-              <input name="word" type="text" class="form-control" id="word" value="{{ $edit_content->word }}" required autofocus>
+              <input name="word" type="text" class="form-control" id="word" value="{{ old('word', $edit_content->word) }}" required autofocus>
             </div>
           </div>
           <div class="form-group row">
@@ -79,7 +82,7 @@
           <div class="form-group row">
             <label for="memo" class="col-form-label col-sm-2">メモ</label>
             <div class="col-sm-10">
-              <textarea name="memo" class="form-control" id="memo" rows="3">{{ $edit_content->memo }}</textarea>
+              <textarea name="memo" class="form-control" id="memo" rows="3">{{ old('memo', $edit_content->memo) }}</textarea>
             </div>
           </div>
           <div class="form-group row">

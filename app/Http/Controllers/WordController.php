@@ -109,15 +109,15 @@ class WordController extends Controller
         $input_word = $request->input('word');
         //$login_id = $request->user()->id;
 
-        $same_word_num = Word::where('user_id', $user_id)
+        $same_word_num = Word::where('user_id', $user_id)->where('id', '!=', $word_id )
                         ->where('word', $input_word)->count('word');
         if ($same_word_num > 0) {
-            $alert_msg = '以前に登録済みの言葉です。修正が必要ならば言葉詳細画面の「編集する」ボタンから修正してください。';
-            return view('edit_word',compact('alert_msg'));
+            //$alert_msg = '以前に登録済みの言葉です。修正が必要ならば言葉詳細画面の「編集する」ボタンから修正してください。';
+            //return view('edit_word',compact('alert_msg'));
+            return back()->withInput()->with('alert_msg', '以前に登録済みの言葉です。修正が必要ならば言葉詳細画面の「編集する」ボタンから修正してください。');
         } else {
             $word = Word::find($word_id);
             $word->word = $request->word;
-            $word->user_id = $request->user()->id;
             $word->lank = $request->lank;
             $word->memo = $request->memo;
 
@@ -134,9 +134,9 @@ class WordController extends Controller
 
             $word->share_flag = $request->share_radios;
             $word->save();
-            $word_id = $word->id;
-            $user_id = $word->user_id;
-            return redirect()->action('WordController@word_content_index', ['user_id' => $user_id, 'word_id' => $word_id]);
+            $update_word_id = $word->id;
+            $update_user_id = $word->user_id;
+            return redirect()->action('WordController@word_content_index', ['user_id' => $update_user_id, 'word_id' => $update_word_id]);
         }
     }
 }
