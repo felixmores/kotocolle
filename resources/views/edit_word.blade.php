@@ -37,7 +37,7 @@
             <div class="col-sm-10">
               <select name="lank" class="form-control w-50" id="lank">
                   @for ($i = 0; $i < 4; $i++)
-                    @if ($edit_content->lank == $i)
+                    @if (old('lank', $edit_content->lank) == $i)
                       @php
                         $selected = 'selected';
                       @endphp
@@ -61,7 +61,7 @@
                   <input name="word_image" type="file" class="form-control-file" id="word_image" style="display:none">
                 </span>
               </label>
-              <input type="text" class="form-control" readonly="">
+              <input type="text" class="form-control" readonly="" placeholder="※画像を選択しない場合、以前の画像が保存されたままとなります。">
             </div>
           </div>
           <fieldset class="form-group">

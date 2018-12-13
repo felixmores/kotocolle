@@ -118,13 +118,16 @@ class WordController extends Controller
             $word->lank = $request->lank;
             $word->memo = $request->memo;
 
+            $old_image_name = $word->word_image;
+            
             if ($request->hasfile('word_image')) {
-                $old_image_name = $word->word_image;
                 if ($old_image_name) {
                     Storage::delete('public/word_images/'.$old_image_name);
                 }
                 $image_path = $request->word_image->store('public/word_images');
                 $word->word_image = basename($image_path);
+            } elseif ($old_image_name) {
+                $word->word_image = $old_image_name;
             } else {
                 $word->word_image = null;
             }
