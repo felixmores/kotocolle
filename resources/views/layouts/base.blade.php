@@ -34,6 +34,9 @@
               </li>
             @else
               <li class="nav-item">
+                <a class="nav-link text-light mr-5" href="{{ action('UserController@userinfo_index') }}">ユーザー設定</a>
+              </li>
+              <li class="nav-item">
                 <span class="nav-link text-light mr-5">{{ Auth::user()->name }}</span>
               </li>
               <li class="nav-item">

@@ -37,4 +37,7 @@ Route::get('/word_content/{user_id}/{word_id}/edit_word', 'WordController@word_e
 //言葉を更新する
 Route::post('/word_content/{user_id}/{word_id}/edit_word', 'WordController@word_update');
 
+//ユーザー情報を表示
+Route::get('/userinfo', 'UserController@userinfo_index');
+
 //Route::get('/home', 'HomeController@index')->name('home');
