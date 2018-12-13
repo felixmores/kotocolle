@@ -8,7 +8,7 @@
       <div class="card-header p-4 h3 text-center text-light bg-primary">ユーザー情報</div>
       <div class="card-body mx-auto">
         <figure class="figure row mb-4">
-          <img src="" class="figure-img img-fluid">
+          <img src="/storage/user_images/{{ $image_name }}" class="img-thumbnail rounded mx-auto w-25 h-25">
         </figure>
         <div class="row h5 mb-4">
           <div class="col-sm-6">ユーザー名</div>
