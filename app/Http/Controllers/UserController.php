@@ -24,4 +24,9 @@ class UserController extends Controller
         }
         return view('userinfo_index', ['name' => $request->user()->name, 'email' => $request->user()->email, 'image_name' => $image_name]);
     }
+
+    //ユーザー情報編集画面を表示
+    public function userinfo_edit() {
+        return view('userinfo_edit');
+    }
 }

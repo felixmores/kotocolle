@@ -20,7 +20,7 @@
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <form action="" method="GET">
+            <form action="{{ action('UserController@userinfo_edit') }}" method="GET">
               <button type="submit" class="btn btn-primary btn-lg">編集する</button>
             </form>
           </div>

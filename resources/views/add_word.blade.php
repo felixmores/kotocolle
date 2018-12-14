@@ -8,7 +8,7 @@
       <div class="card-header p-4 h3 text-center text-light bg-primary">新しい言葉を登録する</div>
       <div class="card-body">
         @if (count($errors) > 0)
-        <div class="card-text alert alert-warning" role="alert">
+        <div class="card-text alert alert-danger" role="alert">
           <ul>
             @foreach ($errors->all() as $error)
               <li>{{$error}}</li>
