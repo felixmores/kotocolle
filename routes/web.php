@@ -41,5 +41,7 @@ Route::post('/word_content/{user_id}/{word_id}/edit_word', 'WordController@word_
 Route::get('/userinfo', 'UserController@userinfo_index');
 //ユーザー情報の編集画面を表示
 Route::get('/userinfo/edit', 'UserController@userinfo_edit');
+//パスワード変更画面を表示
+Route::get('/userinfo/password_edit', 'UserController@password_edit');
 
 //Route::get('/home', 'HomeController@index')->name('home');

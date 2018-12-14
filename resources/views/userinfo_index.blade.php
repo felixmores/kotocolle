@@ -18,16 +18,17 @@
           <div class="col-sm-6">メールアドレス</div>
           <div class="col-sm-6">{{ $email }}</div>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
+        <div class="btn-toolbar">
+          <div class="btn-group">
             <form action="{{ action('UserController@userinfo_edit') }}" method="GET">
-              <button type="submit" class="btn btn-primary btn-lg">編集する</button>
+              <button type="submit" class="btn btn-primary mx-3">編集する</button>
             </form>
-          </div>
-          <div class="col-sm-6">
+            <form action="{{ action('UserController@password_edit') }}" method="GET">
+              <button type="submit" class="btn btn-success mx-3">パスワード変更</button>
+            </form>
             <form action="" method="POST">
               {{ csrf_field() }}
-              <button type="submit" class="btn btn-danger btn-lg">退会する</button>
+              <button type="submit" class="btn btn-danger mx-3">退会する</button>
             </form>
           </div>
         </div>

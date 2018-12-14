@@ -14,11 +14,11 @@
           {{ csrf_field() }}
           <div class="form-group">
             <label for="name" class="col-form-label">ユーザー名</label>
-            <input name="name" type="text" class="form-control" id="name" value="hogehoge" required autofocus>
+            <input name="name" type="text" class="form-control" id="name" value="{{ $name }}" required autofocus>
           </div>
           <div class="form-group">
             <label for="email" class="col-form-label">メールアドレス</label>
-            <input name="email" type="email" class="form-control" id="email" value="hogehoge@test.com" required>
+            <input name="email" type="email" class="form-control" id="email" value="{{ $email }}" required>
           </div>
           <div class="form-group">
             <div class="input-group">
@@ -31,18 +31,6 @@
               <input type="text" class="form-control" readonly="" aria-describedby="user_image_help">
             </div>
             <small id ="user_image_help" class="form-text text-muted"><p>※画像を選択しない場合、以前の画像はそのままとなります。</p></small>
-          </div>
-          <div class="form-group">
-            <label for="password" class="col-form-label">現在のパスワード</label>
-            <input name="password" type="password" class="form-control" id="password" value="" required>
-          </div>
-          <div class="form-group">
-            <label for="new_password" class="col-form-label">新しいパスワード</label>
-            <input name="new_password" type="password" class="form-control" id="new_password" value="" required>
-          </div>
-          <div class="form-group">
-            <label for="confirm_password" class="col-form-label">新しいパスワードの確認</label>
-            <input name="confirm_password" type="password" class="form-control" id="confirm_password" value="" required>
           </div>
           <div class="form-group">
             <div class="mx-auto text-center">

@@ -26,7 +26,16 @@ class UserController extends Controller
     }
 
     //ユーザー情報編集画面を表示
-    public function userinfo_edit() {
-        return view('userinfo_edit');
+    public function userinfo_edit(Request $request) {
+        $user_params = [
+            'name' => $request->user()->name,
+            'email' => $request->user()->email,
+        ];
+        return view('userinfo_edit', $user_params);
+    }
+
+    //パスワード変更画面を表示
+    public function password_edit() {
+        return view('password_edit');
     }
 }
