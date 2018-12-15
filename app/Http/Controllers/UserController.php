@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\PasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -66,9 +67,11 @@ class UserController extends Controller
 
     //パスワードを変更
     public function password_update(PasswordRequest $request) {
-        $password = User::select('password')->where('id', $request->user()->id)->first();
-        if ($password == $request->password) {
-            $password->password = $request->new_password;
+        $password = User::find($request->user()->id);
+        $hashed_password = Hash::make($request->password);
+
+        if (Hash::check($request->password, $hashed_password)) {
+            $password->password = Hash::make($request->new_password);
             $password->save();
             return redirect()->action('UserController@userinfo_index');
         } else {
