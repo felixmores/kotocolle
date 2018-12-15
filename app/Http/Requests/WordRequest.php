@@ -25,7 +25,7 @@ class WordRequest extends FormRequest
     public function rules()
     {
         return [
-            'word' => "required|max:30",
+            'word' => 'required|max:30',
             'word_image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:500|dimensions:max_width=500,max_height=500',
             'memo' => 'max:150',
         ];

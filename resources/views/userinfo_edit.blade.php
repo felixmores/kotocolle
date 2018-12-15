@@ -7,18 +7,24 @@
     <div class="card border border-primary mt-5 w-75 mx-auto">
       <div class="card-header p-4 h3 text-center text-light bg-primary">ユーザー情報を編集する</div>
       <div class="card-body w-75 mx-auto">
+        @if (count($errors) > 0)
         <div class="card-text alert alert-danger" role="alert">
-          エラーメッセージ
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
         </div>
-        <form action="" method="POST" enctype="multipart/form-data">
+        @endif
+        <form action="{{ action('UserController@userinfo_update') }}" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-group">
             <label for="name" class="col-form-label">ユーザー名</label>
-            <input name="name" type="text" class="form-control" id="name" value="{{ $name }}" required autofocus>
+            <input name="name" type="text" class="form-control" id="name" value="{{ old('name', $name) }}" required autofocus>
           </div>
           <div class="form-group">
             <label for="email" class="col-form-label">メールアドレス</label>
-            <input name="email" type="email" class="form-control" id="email" value="{{ $email }}" required>
+            <input name="email" type="email" class="form-control" id="email" value="{{ old('email', $email) }}" required>
           </div>
           <div class="form-group">
             <div class="input-group">

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
-//use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
-//use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -32,6 +32,30 @@ class UserController extends Controller
             'email' => $request->user()->email,
         ];
         return view('userinfo_edit', $user_params);
+    }
+
+    //ユーザー情報を更新
+    public function userinfo_update(UserRequest $request) {
+        $user = User::find($request->user()->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $old_image_name = $user->user_image;
+            
+        if ($request->hasfile('user_image')) {
+            if ($old_image_name) {
+                Storage::delete('public/user_images/'.$old_image_name);
+            }
+            $image_path = $request->user_image->store('public/user_images');
+            $user->user_image = basename($image_path);
+        } elseif ($old_image_name) {
+            $user->user_image = $old_image_name;
+        } else {
+            $user->user_image = null;
+        }
+        
+        $user->save();
+        return redirect()->action('UserController@userinfo_index');
     }
 
     //パスワード変更画面を表示
