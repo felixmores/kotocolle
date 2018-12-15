@@ -45,5 +45,7 @@ Route::get('/userinfo/edit', 'UserController@userinfo_edit');
 Route::post('/userinfo/edit', 'UserController@userinfo_update');
 //パスワード変更画面を表示
 Route::get('/userinfo/password_edit', 'UserController@password_edit');
+//パスワードを更新する
+Route::post('/userinfo/password_edit', 'UserController@password_update');
 
 //Route::get('/home', 'HomeController@index')->name('home');

@@ -7,6 +7,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\PasswordRequest;
 
 class UserController extends Controller
 {
@@ -61,5 +62,17 @@ class UserController extends Controller
     //パスワード変更画面を表示
     public function password_edit() {
         return view('password_edit');
+    }
+
+    //パスワードを変更
+    public function password_update(PasswordRequest $request) {
+        $password = User::select('password')->where('id', $request->user()->id)->first();
+        if ($password == $request->password) {
+            $password->password = $request->new_password;
+            $password->save();
+            return redirect()->action('UserController@userinfo_index');
+        } else {
+            return redirect()->action('UserController@password_edit');
+        }
     }
 }
