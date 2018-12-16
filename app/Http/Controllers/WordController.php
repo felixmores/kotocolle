@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Word;
+use App\Models\User;
 use App\Http\Requests\WordRequest;
 
 class WordController extends Controller
@@ -138,5 +139,11 @@ class WordController extends Controller
             $update_user_id = $word->user_id;
             return redirect()->action('WordController@word_content_index', ['user_id' => $update_user_id, 'word_id' => $update_word_id]);
         }
+    }
+
+    //シェアした言葉の一覧画面を表示
+    public function share_word_index() {
+        $share_words = Word::where('share_flag', 1)->with('user')->orderBy('words.updated_at', 'desc')->paginate(5);
+        return view('sharewords', ['share_words' => $share_words]);
     }
 }

@@ -50,4 +50,7 @@ Route::post('/userinfo/password_edit', 'UserController@password_update');
 //ユーザーの退会処理
 Route::post('/userinfo/edit', 'UserController@userinfo_delete');
 
+//シェアした言葉の一覧画面を表示
+Route::get('/shareword', 'WordController@share_word_index');
+
 //Route::get('/home', 'HomeController@index')->name('home');
