@@ -83,7 +83,7 @@ class UserController extends Controller
     //ユーザー退会処理
     public function userinfo_delete(Request $request) {
         $user = User::find($request->user()->id);
-        $word_content->delete();
+        $user->delete();
         Auth::logout();
         return redirect()->action('IndexController@index');
     }
