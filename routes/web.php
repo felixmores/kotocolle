@@ -47,5 +47,7 @@ Route::post('/userinfo/edit', 'UserController@userinfo_update');
 Route::get('/userinfo/password_edit', 'UserController@password_edit');
 //パスワードを更新する
 Route::post('/userinfo/password_edit', 'UserController@password_update');
+//ユーザーの退会処理
+Route::post('/userinfo/edit', 'UserController@userinfo_delete');
 
 //Route::get('/home', 'HomeController@index')->name('home');

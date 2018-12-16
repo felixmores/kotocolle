@@ -26,7 +26,7 @@
             <form action="{{ action('UserController@password_edit') }}" method="GET">
               <button type="submit" class="btn btn-success mx-3">パスワード変更</button>
             </form>
-            <form action="" method="POST">
+            <form action="{{ action('UserController@userinfo_delete') }}" method="POST">
               {{ csrf_field() }}
               <button type="submit" class="btn btn-danger mx-3">退会する</button>
             </form>

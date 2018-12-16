@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -77,5 +78,13 @@ class UserController extends Controller
         } else {
             return redirect()->action('UserController@password_edit');
         }
+    }
+
+    //ユーザー退会処理
+    public function userinfo_delete(Request $request) {
+        $user = User::find($request->user()->id);
+        $word_content->delete();
+        Auth::logout();
+        return redirect()->action('IndexController@index');
     }
 }
