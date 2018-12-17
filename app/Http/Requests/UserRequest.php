@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
         $user_id = $request->user()->id;
         return [
             'name' => 'required|max:20',
-            'email' => "required|email|unique:users,email,{$user_id}|max:30",
+            'email' => "required|email|unique:users,email,{$user_id}|max:50",
             'user_image' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:500|dimensions:max_width=200,max_height=200',
         ];
     }
@@ -35,7 +35,7 @@ class UserRequest extends FormRequest
     public function messages() {
         return [
             'name.max' => 'ユーザー名は20文字までです。',
-            'email.max' => 'メールアドレスは30文字までです。',
+            'email.max' => 'メールアドレスは50文字までです。',
             'user_image.image' => 'ファイルは画像を選択してください。',
             'user_image.mimes' => '画像はJPEG、PNG、GIFファイルのものを選択してください。',
             'user_image.max' => 'ファイルサイズは500KBまでです。',
