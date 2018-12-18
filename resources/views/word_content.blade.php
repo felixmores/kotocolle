@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    <form action="" method="POST">
+    <form action="{{ action('CommentController@comment_add', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="POST">
       {{ csrf_field() }}
       <div class="form-group">
         @if (count($errors) > 0)
@@ -82,7 +82,6 @@
         </div>
         @endif
         <label for="comment" class="h5">この言葉にコメント</label>
-        <input type="hidden" name="word_id" value="{{ $word_content->id }}">
         <textarea name="comment" id="comment" class="form-control" rows="7">{{ old('comment') }}</textarea>
       </div>
       <button type="submit" class="btn btn-primary">コメントする</button>
