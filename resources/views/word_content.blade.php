@@ -81,7 +81,7 @@
           </ul>
         </div>
         @endif
-        <label for="comment" class="h5">この言葉にコメント</label>
+        <label for="comment" class="h5 mt-3">この言葉にコメント</label>
         <textarea name="comment" id="comment" class="form-control" rows="7">{{ old('comment') }}</textarea>
       </div>
       <button type="submit" class="btn btn-primary">コメントする</button>
