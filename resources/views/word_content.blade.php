@@ -72,11 +72,18 @@
     <form action="" method="POST">
       {{ csrf_field() }}
       <div class="form-group">
+        @if (count($errors) > 0)
         <div class="alert alert-danger mt-3" role="alert">
-          エラーメッセージ
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
         </div>
+        @endif
         <label for="comment" class="h5">この言葉にコメント</label>
-        <textarea name="comment" id="comment" class="form-control" rows="7">{{old('comment')}}</textarea>
+        <input type="hidden" name="word_id" value="{{ $word_content->id }}">
+        <textarea name="comment" id="comment" class="form-control" rows="7">{{ old('comment') }}</textarea>
       </div>
       <button type="submit" class="btn btn-primary">コメントする</button>
     </form>

@@ -53,4 +53,7 @@ Route::post('/userinfo', 'UserController@userinfo_delete');
 //シェアした言葉の一覧画面を表示
 Route::get('/shareword', 'WordController@share_word_index');
 
+//コメントを登録する
+//Route::post('/word_content/{user_id}/{word_id}', 'CommentController@comment_add');
+
 //Route::get('/home', 'HomeController@index')->name('home');
