@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Word;
-use App\Models\User;
 use App\Http\Requests\WordRequest;
+use Illuminate\Support\Facades\DB;
 
 class WordController extends Controller
 {
@@ -145,7 +145,13 @@ class WordController extends Controller
 
     //シェアした言葉の一覧画面を表示
     public function share_word_index() {
-        $share_words = Word::where('share_flag', 1)->with('user')->orderBy('words.updated_at', 'desc')->paginate(5);
+        $share_words = DB::table('words')->select('words.id', 'user_id', 'word', 'name', 'lank')
+                        ->join('users', function ($join) {
+                            $join->on('words.user_id', '=', 'users.id')
+                                    ->where('words.share_flag', 1)
+                                    ->whereNull('users.deleted_at');
+                        })
+                        ->orderBy('words.updated_at', 'desc')->paginate(5);
         return view('sharewords', ['share_words' => $share_words]);
     }
 }

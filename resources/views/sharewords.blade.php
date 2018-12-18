@@ -19,7 +19,7 @@
           @foreach ($share_words as $share_word)
             <tr>
               <td><a href="{{ action('WordController@word_content_index', ['user_id' => $share_word->user_id, 'word_id' => $share_word->id]) }}">{{$share_word->word}}</a></td>
-              <td>{{ $share_word->user->name }}</td>
+              <td>{{ $share_word->name }}</td>
               @switch($share_word->lank)
                 @case(1)
                   <td>金言</td>

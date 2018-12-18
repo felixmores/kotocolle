@@ -34,7 +34,7 @@
               </li>
             @else
               <li class="nav-item">
-                <a class="nav-link text-light mr-5" href="{{ action('WordController@share_word_index') }}">ことばをシェア</a>
+                <a class="nav-link text-light mr-5" href="{{ action('WordController@share_word_index') }}">みんなの言葉</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-light mr-5" href="{{ action('UserController@userinfo_index') }}">ユーザー設定</a>
