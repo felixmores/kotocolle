@@ -88,15 +88,21 @@
     </form>
 
     <h5 class="mt-5">コメント一覧</h5>
+    @if (count($comment_all) > 0)
     <form action="" method="POST">
-      <ul class="list-group">
-        <li class="list-group-item mb-5">
-          <p>ユーザー名</p>
-          <p>コメント内容</p>
-          <p>投稿日時：2018/12/08 16:50</p>
+      @foreach ($comment_all as $comment_content)
+      <ul class="list-group mb-4">
+        <li class="list-group-item">{{ $comment_content->user->name }}</li>
+        <li class="list-group-item">{{ $comment_content->comment }}</li>
+        <li class="list-group-item">
+          投稿日時：{{ $comment_content->created_at }}
           <button type="submit" class="btn btn-danger btn-sm">コメントを削除する</button>
         </li>
       </ul>
+      @endforeach
     </form>
+    @else
+    <h3 class="text-center">コメントはまだありません。</h3>
+    @endif
   </div>
 @endsection

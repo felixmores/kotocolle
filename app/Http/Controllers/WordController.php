@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Word;
+use App\Models\Comment;
 use App\Http\Requests\WordRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -71,7 +72,8 @@ class WordController extends Controller
                 } else {
                     $image_name = 'no_word_image.jpg';
                 }
-                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name]);
+                $comment_all = Comment::where('word_id', $word_id)->get();
+                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'comment_all' => $comment_all]);
             }
         } else {
             return redirect()->action('WordController@mypage_index');
