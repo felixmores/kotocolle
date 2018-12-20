@@ -58,4 +58,7 @@ Route::post('/word_content/{user_id}/{word_id}/comment_add', 'CommentController@
 //コメントを削除する
 Route::post('/word_content/{user_id}/{word_id}/comment_delete', 'CommentController@comment_delete');
 
+//登録ユーザー一覧画面を表示
+Route::get('/users', 'UserController@users_list_index');
+
 //Route::get('/home', 'HomeController@index')->name('home');

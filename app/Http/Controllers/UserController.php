@@ -87,4 +87,10 @@ class UserController extends Controller
         Auth::logout();
         return redirect()->action('IndexController@index');
     }
+
+    //登録ユーザー一覧表示
+    public function users_list_index() {
+        $users_list = User::withTrashed()->orderBy('id', 'asc')->paginate(5);
+        return view('users_list', ['users_list' => $users_list]);
+    }
 }

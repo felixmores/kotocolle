@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,9 +25,17 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login.
      *
-     * @var string
+     * @return string
      */
-    protected $redirectTo = '/mypage';
+
+    protected function redirectTo() {
+        $admin_flag = User::where('id', Auth::id())->value('admin_flag');
+        if ($admin_flag == 1) {
+            return '/users';
+        } else {
+            return '/mypage';
+        }
+    }
 
     /**
      * Create a new controller instance.
