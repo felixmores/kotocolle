@@ -34,4 +34,11 @@ class CommentController extends Controller
             return back();
         }
     }
+
+    //コメントを削除する
+    public function comment_delete(Request $request, $user_id, $word_id) {
+        $comment = Comment::find($request->comment_id);
+        $comment->delete();
+        return back();
+    }
 }

@@ -55,5 +55,7 @@ Route::get('/shareword', 'WordController@share_word_index');
 
 //コメントを登録する
 Route::post('/word_content/{user_id}/{word_id}/comment_add', 'CommentController@comment_add');
+//コメントを削除する
+Route::post('/word_content/{user_id}/{word_id}/comment_delete', 'CommentController@comment_delete');
 
 //Route::get('/home', 'HomeController@index')->name('home');

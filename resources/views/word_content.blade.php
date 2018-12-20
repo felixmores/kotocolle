@@ -89,13 +89,15 @@
 
     <h5 class="mt-5">コメント一覧</h5>
     @if (count($comment_all) > 0)
-    <form action="" method="POST">
+    <form action="{{ action('CommentController@comment_delete', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="POST">
+      {{ csrf_field() }}
       @foreach ($comment_all as $comment_content)
       <ul class="list-group mb-4">
         <li class="list-group-item">{{ $comment_content->user->name }}</li>
         <li class="list-group-item">{{ $comment_content->comment }}</li>
         <li class="list-group-item">
           投稿日時：{{ $comment_content->created_at }}
+          <input type="hidden" name="comment_id" value="{{ $comment_content->id }}">
           <button type="submit" class="btn btn-danger btn-sm">コメントを削除する</button>
         </li>
       </ul>
