@@ -93,4 +93,11 @@ class UserController extends Controller
         $users_list = User::withTrashed()->orderBy('id', 'asc')->paginate(5);
         return view('users_list', ['users_list' => $users_list]);
     }
+
+    //登録ユーザー強制退会
+    public function users_list_delete(Request $request) {
+        $user = User::find($request->user_id);
+        $user->delete();
+        return back();
+    }
 }

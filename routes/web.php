@@ -60,5 +60,7 @@ Route::post('/word_content/{user_id}/{word_id}/comment_delete', 'CommentControll
 
 //登録ユーザー一覧画面を表示
 Route::get('/users', 'UserController@users_list_index');
+//登録ユーザーを強制退会
+Route::post('/users', 'UserController@users_list_delete');
 
 //Route::get('/home', 'HomeController@index')->name('home');
