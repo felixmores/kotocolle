@@ -88,9 +88,9 @@ class UserController extends Controller
         return redirect()->action('IndexController@index');
     }
 
-    //登録ユーザー一覧表示
+    //登録ユーザー一覧表示(管理画面)
     public function users_list_index(Request $request) {
-        if ($request->user()->admin_flag == 1) {
+        if ($request->user()->admin_flag === 1) {
             $users_list = User::withTrashed()->orderBy('id', 'asc')->paginate(5);
             return view('users_list', ['users_list' => $users_list]);
         } else {
@@ -98,7 +98,7 @@ class UserController extends Controller
         }
     }
 
-    //登録ユーザー強制退会
+    //登録ユーザー強制退会(管理画面)
     public function users_list_delete(Request $request) {
         $user = User::find($request->user_id);
         $user->delete();

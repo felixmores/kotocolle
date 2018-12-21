@@ -19,7 +19,7 @@
           <tbody>
           @foreach ($words_list as $wordinfo)
             <tr>
-              <td>{{ $wordinfo->id }}</td>
+              <td><a href="{{ action('WordController@word_content_index', ['user_id' => $wordinfo->user_id, 'word_id' => $wordinfo->id]) }}">{{ $wordinfo->id }}</a></td>
               <td>{{ $wordinfo->word }}</td>
               @switch($wordinfo->lank)
                 @case(1)

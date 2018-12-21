@@ -66,7 +66,7 @@ class WordController extends Controller
     public function word_content_index(Request $request, $user_id, $word_id) {
         $word_content = Word::where('id', $word_id)->where('user_id', $user_id)->first();
         if ($word_content) {
-            if (($request->user()->id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1) {
+            if (($request->user()->id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $request->user()->admin_flag === 1) {
                 if ($word_content->word_image) {
                     $image_name = $word_content->word_image;
                 } else {
@@ -157,9 +157,9 @@ class WordController extends Controller
         return view('sharewords', ['share_words' => $share_words]);
     }
 
-    //登録ユーザーの言葉一覧画面を表示
+    //登録ユーザーの言葉一覧画面を表示(管理画面)
     public function words_list(Request $request, $user_id) {
-        if ($request->user()->admin_flag == 1) {
+        if ($request->user()->admin_flag === 1) {
             $words_list = Word::where('user_id', $user_id)->orderBy('id', 'asc')->paginate(5);
             return view('words_list', ['words_list' => $words_list]);
         } else {
