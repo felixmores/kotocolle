@@ -157,12 +157,13 @@ class WordController extends Controller
         return view('sharewords', ['share_words' => $share_words]);
     }
 
-    //言葉の一覧画面を表示
-    /*
-    public function words_list(Request $request) {
-        if ($request->user()->admin_flag) {
-            $words_list = Word::where()
+    //登録ユーザーの言葉一覧画面を表示
+    public function words_list(Request $request, $user_id) {
+        if ($request->user()->admin_flag == 1) {
+            $words_list = Word::where('user_id', $user_id)->orderBy('id', 'asc')->paginate(5);
+            return view('words_list', ['words_list' => $words_list]);
+        } else {
+            return redirect()->action('IndexController@index');
         }
     }
-    */
 }

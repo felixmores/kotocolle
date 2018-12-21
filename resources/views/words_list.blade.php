@@ -21,7 +21,19 @@
             <tr>
               <td>{{ $wordinfo->id }}</td>
               <td>{{ $wordinfo->word }}</td>
-              <td>{{ $wordinfo->lank }}</td>
+              @switch($wordinfo->lank)
+                @case(1)
+                  <td>金言</td>
+                  @break
+                @case(2)
+                  <td>銀言</td>
+                  @break
+                @case(3)
+                  <td>銅言</td>
+                  @break
+                @default
+                  <td>ランクなし</td>
+              @endswitch
               @if ($wordinfo->share_flag == 1)
               <td>公開中</td>
               @else
@@ -33,6 +45,6 @@
         </table>
       </div>
     </div>  
-    {{ $users_list->links() }}
+    {{ $words_list->links() }}
   </div>
 @endsection

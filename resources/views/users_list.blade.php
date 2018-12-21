@@ -21,7 +21,7 @@
           @foreach ($users_list as $userinfo)
             <tr>
               <td>{{ $userinfo->id }}</td>
-              <td>{{ $userinfo->name }}</td>
+              <td><a href="{{ action('WordController@words_list', ['user_id' => $userinfo->id]) }}">{{ $userinfo->name }}</a></td>
               <td>{{ $userinfo->email }}</td>
               @if ($userinfo->deleted_at)
               <td>{{ $userinfo->deleted_at }}</td>
