@@ -89,9 +89,13 @@ class UserController extends Controller
     }
 
     //登録ユーザー一覧表示
-    public function users_list_index() {
-        $users_list = User::withTrashed()->orderBy('id', 'asc')->paginate(5);
-        return view('users_list', ['users_list' => $users_list]);
+    public function users_list_index(Request $request) {
+        if ($request->user()->admin_flag == 1) {
+            $users_list = User::withTrashed()->orderBy('id', 'asc')->paginate(5);
+            return view('users_list', ['users_list' => $users_list]);
+        } else {
+            return redirect()->action('IndexController@index');
+        }
     }
 
     //登録ユーザー強制退会

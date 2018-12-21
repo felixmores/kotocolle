@@ -156,4 +156,13 @@ class WordController extends Controller
                         ->orderBy('words.updated_at', 'desc')->paginate(5);
         return view('sharewords', ['share_words' => $share_words]);
     }
+
+    //言葉の一覧画面を表示
+    /*
+    public function words_list(Request $request) {
+        if ($request->user()->admin_flag) {
+            $words_list = Word::where()
+        }
+    }
+    */
 }
