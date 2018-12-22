@@ -53,12 +53,15 @@
           <div class="col-sm-3">更新日</div>
           <div class="col-sm-9">{{ $word_content->updated_at }}</div>
         </div>
+        @if ($login_id === $word_content->user_id || $admin_flag === 1)
         <div class="row">
+          @if ($admin_flag !== 1)
           <div class="col-sm-6">
             <form action="{{ action('WordController@word_edit', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="GET">
               <button type="submit" class="btn btn-primary btn-lg">編集する</button>
             </form>
           </div>
+          @endif
           <div class="col-sm-6">
             <form action="{{ action('WordController@word_delete', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="POST">
               {{ csrf_field() }}
@@ -66,6 +69,7 @@
             </form>
           </div>
         </div>
+        @endif
       </div>
     </div>
 
@@ -98,7 +102,9 @@
         <li class="list-group-item">
           投稿日時：{{ $comment_content->created_at }}
           <input type="hidden" name="comment_id" value="{{ $comment_content->id }}">
+          @if ($login_id === $comment_content->user_id || $admin_flag === 1)
           <button type="submit" class="btn btn-danger btn-sm">コメントを削除する</button>
+          @endif
         </li>
       </ul>
       @endforeach

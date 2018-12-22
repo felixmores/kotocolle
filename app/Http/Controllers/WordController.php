@@ -76,14 +76,16 @@ class WordController extends Controller
     public function word_content_index(Request $request, $user_id, $word_id) {
         $word_content = Word::where('id', $word_id)->where('user_id', $user_id)->first();
         if ($word_content) {
-            if (($request->user()->id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $request->user()->admin_flag === 1) {
+            $admin_flag = $request->user()->admin_flag;
+            $login_id = $request->user()->id;
+            if (($login_id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $admin_flag === 1) {
                 if ($word_content->word_image) {
                     $image_name = $word_content->word_image;
                 } else {
                     $image_name = 'no_word_image.jpg';
                 }
                 $comment_all = Comment::where('word_id', $word_id)->get();
-                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'comment_all' => $comment_all]);
+                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'admin_flag' => $admin_flag, 'login_id' => $login_id, 'comment_all' => $comment_all]);
             }
         } else {
             return redirect()->action('WordController@mypage_index');
