@@ -19,14 +19,24 @@ class WordController extends Controller
     
     //マイページ画面を表示
     public function mypage_index(Request $request) {
-        $id = $request->user()->id;
-        $my_words = Word::select('id', 'word', 'user_id', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
-        return view('mypage', ['my_words' => $my_words]);
+        $admin_flag = $request->user()->admin_flag;
+        if ($admin_flag === 1) {
+            return redirect()->action('IndexController@index');
+        } else {
+            $id = $request->user()->id;
+            $my_words = Word::select('id', 'word', 'user_id', 'lank')->where('user_id', $id)->orderBy('updated_at', 'desc')->paginate(5);
+            return view('mypage', ['my_words' => $my_words]);
+        }
     }
 
     //言葉登録画面を表示
     public function add_word_index(Request $request) {
-        return view('add_word');
+        $admin_flag = $request->user()->admin_flag;
+        if ($admin_flag === 1) {
+            return redirect()->action('IndexController@index');
+        } else {
+            return view('add_word');
+        }
     }
 
     //言葉を新規登録
