@@ -4,12 +4,15 @@
 
 @section('content')
     <div class="container">
+        {{-- カード本体 --}}
         <div class="card mt-5 border border-primary">
             <div class="card-header p-4 h3 text-center text-light bg-primary">新規登録</div>
             <div class="card-body">
+                {{-- 送信フォーム --}}
                 <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
+                    {{-- ユーザー名 --}}
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="name" class="control-label">ユーザー名</label>
                         <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -20,6 +23,7 @@
                         @endif
                     </div>
 
+                    {{-- メールアドレス --}}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="control-label">メールアドレス</label>
                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -30,6 +34,7 @@
                         @endif
                     </div>
 
+                    {{-- パスワード --}}
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="password" class="control-label">パスワード</label>
                         <input id="password" type="password" class="form-control" name="password" required>
@@ -40,11 +45,13 @@
                         @endif
                     </div>
 
+                    {{-- パスワード確認 --}}
                     <div class="form-group">
                         <label for="password-confirm" class="control-label">パスワード確認</label>
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                     </div>
 
+                    {{-- 新規登録ボタン --}}
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg">
                             新規登録

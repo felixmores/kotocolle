@@ -30,6 +30,11 @@ class PasswordRequest extends FormRequest
         ];
     }
 
+    /**
+     * バリデーションメッセージ
+     * 
+     * @return array
+     */
     public function messages() {
         return [
             'new_password.min' => '新しいパスワードは6文字以上15文字以内です。',

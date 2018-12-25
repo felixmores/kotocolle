@@ -4,9 +4,12 @@
 
 @section('content')
   <div class="container">
+    {{-- カード本体 --}}
     <div class="card border border-primary mt-5">
       <div class="card-header p-4 h3 text-center text-light bg-primary">みんなの言葉</div>
       <div class="card-body">
+
+        {{-- テーブル本体 --}}
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
@@ -18,8 +21,13 @@
           <tbody>
           @foreach ($share_words as $share_word)
             <tr>
+              {{-- 言葉 --}}
               <td><a href="{{ action('WordController@word_content_index', ['user_id' => $share_word->user_id, 'word_id' => $share_word->id]) }}">{{$share_word->word}}</a></td>
+              
+              {{-- ユーザー名 --}}
               <td>{{ $share_word->name }}</td>
+
+              {{-- ランク --}}
               @switch($share_word->lank)
                 @case(1)
                   <td>金言</td>

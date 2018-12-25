@@ -4,16 +4,22 @@
 
 @section('content')
   <div class="container">
+    {{-- カード本体 --}}
     <div class="card border border-primary mt-5">
       <div class="card-header p-4 h3 text-center text-light bg-primary">言葉の確認</div>
       <div class="card-body mx-auto">
+        {{-- 言葉 --}}
         <div class="row h5 mb-4">
           <div class="col-sm-3">言葉</div>
           <div class="col-sm-9">{{ $word_content->word }}</div>
         </div>
+
+        {{-- 画像 --}}
         <figure class="figure row mb-4">
           <img src="/storage/word_images/{{ $image_name }}" class="figure-img img-fluid">
         </figure>
+
+        {{-- ランク --}}
         <div class="row h5 mb-4">
           <div class="col-sm-3">ランク</div>
           @switch ($word_content->lank)
@@ -30,6 +36,8 @@
               <div class="col-sm-9">ランクなし</div>
           @endswitch
         </div>
+
+        {{-- 公開状態 --}}
         <div class="row h5 mb-4">
           <div class="col-sm-3">公開</div>
           @switch ($word_content->share_flag)
@@ -41,18 +49,26 @@
               @break
           @endswitch
         </div>
+
+        {{-- メモ --}}
         <div class="row h5 mb-4">
           <div class="col-sm-3">メモ</div>
           <div class="col-sm-9">{{ $word_content->memo }}</div>
         </div>
+
+        {{-- 登録日 --}}
         <div class="row h5 mb-4">
           <div class="col-sm-3">登録日</div>
           <div class="col-sm-9">{{ $word_content->created_at }}</div>
         </div>
+
+        {{-- 更新日 --}}
         <div class="row h5 mb-4">
           <div class="col-sm-3">更新日</div>
           <div class="col-sm-9">{{ $word_content->updated_at }}</div>
         </div>
+
+        {{-- ボタン --}}
         @if ($login_id === $word_content->user_id || $admin_flag === 1)
         <div class="row">
           @if ($admin_flag !== 1)
@@ -73,8 +89,11 @@
       </div>
     </div>
 
+    {{-- コメント送信フォーム --}}
     <form action="{{ action('CommentController@comment_add', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="POST">
       {{ csrf_field() }}
+
+      {{-- エラーメッセージ --}}
       <div class="form-group">
         @if (count($errors) > 0)
         <div class="alert alert-danger mt-3" role="alert">
@@ -85,12 +104,15 @@
           </ul>
         </div>
         @endif
+
+        {{-- コメント入力欄 --}}
         <label for="comment" class="h5 mt-3">この言葉にコメント</label>
         <textarea name="comment" id="comment" class="form-control" rows="7">{{ old('comment') }}</textarea>
       </div>
       <button type="submit" class="btn btn-primary">コメントする</button>
     </form>
 
+    {{-- コメント一覧 --}}
     <h5 class="mt-5">コメント一覧</h5>
     @if (count($comment_all) > 0)
     <form action="{{ action('CommentController@comment_delete', ['user_id' => $word_content->user_id, 'word_id' => $word_content->id]) }}" method="POST">

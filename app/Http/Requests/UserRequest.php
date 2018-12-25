@@ -32,6 +32,11 @@ class UserRequest extends FormRequest
         ];
     }
 
+    /**
+     * バリデーションメッセージ
+     * 
+     * @return array
+     */
     public function messages() {
         return [
             'name.max' => 'ユーザー名は20文字までです。',

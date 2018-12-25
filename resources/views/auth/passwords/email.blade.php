@@ -4,6 +4,7 @@
 
 @section('content')
     <<div class="container">
+        {{-- カード本体 --}}
         <div class="card border mt-5 border-primary">
             <div class="card-header p-4 h3 text-center text-light bg-primary">パスワードを忘れた場合</div>
             
@@ -16,9 +17,11 @@
                     </div>
                 @endif
 
+                {{-- 送信フォーム --}}
                 <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
                     {{ csrf_field() }}
 
+                    {{-- メールアドレス --}}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="control-label">メールアドレス</label>
                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -30,6 +33,7 @@
                         @endif
                     </div>
 
+                    {{-- 送信ボタン --}}
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg">
                             送信

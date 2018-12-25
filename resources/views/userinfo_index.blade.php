@@ -4,20 +4,29 @@
 
 @section('content')
   <div class="container">
+    {{-- カード本体 --}}
     <div class="card border border-primary mt-5">
       <div class="card-header p-4 h3 text-center text-light bg-primary">ユーザー情報</div>
       <div class="card-body mx-auto">
+
+        {{-- ユーザー画像 --}}
         <figure class="figure row mb-4">
           <img src="/storage/user_images/{{ $image_name }}" class="img-thumbnail rounded mx-auto w-25 h-25">
         </figure>
+
+        {{-- ユーザー名 --}}
         <div class="row h5 mb-4">
           <div class="col-sm-6">ユーザー名</div>
           <div class="col-sm-6">{{ $name }}</div>
         </div>
+
+        {{-- メールアドレス --}}
         <div class="row h5 mb-4">
           <div class="col-sm-6">メールアドレス</div>
           <div class="col-sm-6">{{ $email }}</div>
         </div>
+
+        {{-- ボタングループ --}}
         <div class="btn-toolbar">
           <div class="btn-group">
             <form action="{{ action('UserController@userinfo_edit') }}" method="GET">

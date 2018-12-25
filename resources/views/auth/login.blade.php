@@ -4,12 +4,15 @@
 
 @section('content')
     <div class="container">
+        {{-- カード本体 --}}
         <div class="card mt-5 border border-primary">
             <div class="card-header p-4 h3 text-center text-light bg-primary">ログイン</div>
             <div class="card-body">
+                {{-- 送信フォーム --}}
                 <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
+                    {{-- メールアドレス --}}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="control-label">メールアドレス</label>
                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -20,6 +23,7 @@
                         @endif
                     </div>
 
+                    {{-- パスワード --}}
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                         <label for="password" class="control-label">パスワード</label>
                         <input id="password" type="password" class="form-control" name="password" required>
@@ -30,6 +34,7 @@
                         @endif
                     </div>
 
+                    {{-- ログイン保持チェックボックス --}}
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
@@ -38,6 +43,7 @@
                         </div>
                     </div>
 
+                    {{-- ログインボタン、パスワード忘れリンク --}}
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-lg">
                             ログイン

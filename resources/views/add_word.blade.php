@@ -4,9 +4,11 @@
 
 @section('content')
   <div class="container">
+    {{-- カード本体 --}}
     <div class="card border border-primary mt-5 w-75 mx-auto">
       <div class="card-header p-4 h3 text-center text-light bg-primary">新しい言葉を登録する</div>
       <div class="card-body">
+        {{-- エラーメッセージ --}}
         @if (count($errors) > 0)
         <div class="card-text alert alert-danger" role="alert">
           <ul>
@@ -16,19 +18,27 @@
           </ul>
         </div>
         @endif
+
+        {{-- 警告メッセージ --}}
         @isset($alert_msg)
         <div class="card-text alert alert-danger" role="alert">
           {{$alert_msg}}
         </div>
         @endisset
+
+        {{-- 送信フォーム --}}
         <form action="{{ action('WordController@add_word_new') }}" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
+
+          {{-- 言葉 --}}
           <div class="form-group row">
             <label for="word" class="col-form-label col-sm-2">言葉</label>
             <div class="col-sm-10">
               <input name="word" type="text" class="form-control" id="word" value="{{old('word')}}" required autofocus>
             </div>
           </div>
+
+          {{-- ランク --}}
           <div class="form-group row">
             <label for="lank" class="col-form-label col-sm-2">ランク</label>
             <div class="col-sm-10">
@@ -40,6 +50,8 @@
               </select>
             </div>
           </div>
+
+          {{-- 画像 --}}
           <div class="form-group row">
             <label for="word_image" class="col-form-label col-sm-2">画像</label>
             <div class="input-group col-sm-10">
@@ -52,6 +64,8 @@
               <input type="text" class="form-control" readonly="">
             </div>
           </div>
+
+          {{-- 公開状態 --}}
           <fieldset class="form-group">
             <div class="row">
               <legend class="col-form-label col-sm-2 pt-0">公開状態</legend>
@@ -67,12 +81,16 @@
               </div>
             </div>
           </fieldset>
+
+          {{-- メモ --}}
           <div class="form-group row">
             <label for="memo" class="col-form-label col-sm-2">メモ</label>
             <div class="col-sm-10">
               <textarea name="memo" class="form-control" id="memo" rows="3">{{old('memo')}}</textarea>
             </div>
           </div>
+          
+          {{-- 登録ボタン --}}
           <div class="form-group row">
             <div class="mx-auto">
               <button type="submit" class="btn btn-primary btn-lg px-5">登録</button>
