@@ -5,9 +5,9 @@
 @section('content')
   <div class="container">
     {{-- カード本体 --}}
-    <div class="card border border-danger mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-danger">登録ユーザー一覧</div>
-      <div class="card-body">
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-danger mb-0">登録ユーザー一覧</div>
+      <div class="card-body border border-top-0 border-danger">
 
         {{-- テーブル本体 --}}
         <table class="table table-bordered">
@@ -55,6 +55,6 @@
         </table>
       </div>
     </div>  
-    {{ $users_list->links() }}
+    <div class="py-3">{{ $users_list->links() }}</div>
   </div>
 @endsection

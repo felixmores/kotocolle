@@ -63,8 +63,16 @@
       </nav>
     </header>
     
-    <main class="mb-5">
-        @yield('content')
+    <main>
+      <div class="container">
+        <div class="card mt-5">
+          <div class="card-header p-4 h3 text-center text-light bg-warning mb-0">@yield('error_title')</div>
+          <div class="card-body border border-top-0 border-warning">
+            <h4 class="card-title">@yield('error_message')</h4>
+            <p class="card-text">@yield('error_text')</p>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="footer">

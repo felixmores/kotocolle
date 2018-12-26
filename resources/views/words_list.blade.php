@@ -5,9 +5,9 @@
 @section('content')
   <div class="container">
     {{-- カード本体 --}}
-    <div class="card border border-danger mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-danger">言葉一覧</div>
-      <div class="card-body">
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-danger mb-0">言葉一覧</div>
+      <div class="card-body border border-top-0 border-danger">
 
         {{-- テーブル本体 --}}
         <table class="table table-bordered">
@@ -55,6 +55,6 @@
         </table>
       </div>
     </div>  
-    {{ $words_list->links() }}
+    <div class="mt-3">{{ $words_list->links() }}</div>
   </div>
 @endsection

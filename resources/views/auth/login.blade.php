@@ -5,9 +5,9 @@
 @section('content')
     <div class="container">
         {{-- カード本体 --}}
-        <div class="card mt-5 border border-primary">
-            <div class="card-header p-4 h3 text-center text-light bg-primary">ログイン</div>
-            <div class="card-body">
+        <div class="card mt-5">
+            <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">ログイン</div>
+            <div class="card-body border border-top-0 border-primary">
                 {{-- 送信フォーム --}}
                 <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}

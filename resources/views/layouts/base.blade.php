@@ -63,7 +63,7 @@
       </nav>
     </header>
     
-    <main class="mb-5">
+    <main>
         @yield('content')
     </main>
 

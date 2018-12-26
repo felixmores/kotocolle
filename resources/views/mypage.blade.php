@@ -5,9 +5,9 @@
 @section('content')
   <div class="container">
     {{-- カード本体 --}}
-    <div class="card border border-primary mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-primary">マイワード</div>
-      <div class="card-body">
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">マイワード</div>
+      <div class="card-body border border-top-0 border-primary">
 
         {{-- テーブル本体 --}}
         <table class="table table-bordered">
@@ -51,6 +51,6 @@
       </div>
     </form>
     
-    {{ $my_words->links() }}
+    <div class="pb-2">{{ $my_words->links() }}</div>
   </div>
 @endsection

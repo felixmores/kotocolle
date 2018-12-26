@@ -5,9 +5,9 @@
 @section('content')
   <div class="container">
     {{-- カード本体 --}}
-    <div class="card border border-primary mt-5 w-75 mx-auto">
-      <div class="card-header p-4 h3 text-center text-light bg-primary">新しい言葉を登録する</div>
-      <div class="card-body">
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">新しい言葉を登録する</div>
+      <div class="card-body border border-top-0 border-primary mb-3">
         {{-- エラーメッセージ --}}
         @if (count($errors) > 0)
         <div class="card-text alert alert-danger" role="alert">

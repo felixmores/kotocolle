@@ -5,9 +5,9 @@
 @section('content')
   <div class="container">
     {{-- カード本体 --}}
-    <div class="card border border-primary mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-primary">みんなの言葉</div>
-      <div class="card-body">
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">みんなの言葉</div>
+      <div class="card-body border border-top-0 border-primary">
 
         {{-- テーブル本体 --}}
         <table class="table table-bordered">
@@ -46,7 +46,7 @@
           </tbody>
         </table>
       </div>
-    </div>  
-    {{ $share_words->links() }}
+    </div>
+    <div class="mt-3">{{ $share_words->links() }}</div>
   </div>
 @endsection

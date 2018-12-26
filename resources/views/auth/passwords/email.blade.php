@@ -5,10 +5,10 @@
 @section('content')
     <<div class="container">
         {{-- カード本体 --}}
-        <div class="card border mt-5 border-primary">
-            <div class="card-header p-4 h3 text-center text-light bg-primary">パスワードを忘れた場合</div>
+        <div class="card mt-4">
+            <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">パスワードを忘れた場合</div>
             
-            <div class="card-body">
+            <div class="card-body border border-top-0 border-primary">
                 <p class="card-text text-center">ご登録いただいたメールアドレスを入力してください。</p>
                 <p class="card-text text-center">パスワード発行ページのURLを記載したメールを送信します。</p>
                 @if (session('status'))

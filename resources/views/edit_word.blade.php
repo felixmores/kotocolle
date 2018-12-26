@@ -5,9 +5,9 @@
 @section('content')
   <div class="container">
     {{-- カード本体 --}}
-    <div class="card border border-primary mt-5 w-75 mx-auto">
-      <div class="card-header p-4 h3 text-center text-light bg-primary">言葉を編集する</div>
-      <div class="card-body">
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">言葉を編集する</div>
+      <div class="card-body border border-top-0 border-primary mb-3">
         {{-- エラーメッセージ --}}
         @if (count($errors) > 0)
         <div class="card-text alert alert-danger" role="alert">
@@ -73,7 +73,7 @@
                   <input name="word_image" type="file" class="form-control-file" id="word_image" style="display:none">
                 </span>
               </label>
-              <input type="text" class="form-control" readonly="" placeholder="※画像を選択しない場合、以前の画像が保存されたままとなります。">
+              <input type="text" class="form-control" readonly="" placeholder="※画像を選択しない場合、画像はそのままです。">
             </div>
           </div>
 

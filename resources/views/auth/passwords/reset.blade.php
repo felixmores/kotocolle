@@ -5,10 +5,10 @@
 @section('content')
     <div class="container">
         {{-- カード本体 --}}
-        <div class="card border border-primary mt-5">
-            <div class="card-header h3 p-4 text-center text-light bg-primary">パスワードを変更する</div>
+        <div class="card mt-5">
+            <div class="card-header h3 p-4 text-center text-light bg-primary mb-0">パスワードを変更する</div>
             
-            <div class="card-body">
+            <div class="card-body border border-top-0 border-primary mb-4">
                 <p class="card-text text-center">新しいパスワードを入力してください。</p>
                 <p class="card-text text-center">次回より設定したパスワードでログインできます。</p>
                 
