@@ -3,42 +3,40 @@
 @section('title', 'ことコレ')
 
 @section('content')
-  <h1 class="text-center mt-5 pt-5">ことコレ</h1>
-  <h3 class="text-center mb-5">～ことばコレクション～</h3>
-  <h5 class="text-center mb-5">心に残ったことばを記録してコレクションしよう</h5>
-  
+
+<div class="jumbotron jumbotron-fluid text-white mt-3 mb-0">
   <div class="container">
-    <img class="mx-auto d-block img-fluid w-75" src="images/no_image_md.jpg" alt="no_image">
+    <h1 class="display-4">ことコレ</h1>
+    <h1>～ことばコレクション～</h1>
+    <p class="lead">心に残ったことばを記録してコレクションしよう</p>
   </div>
-
-  <h4 class="text-center my-5">使い方</h4>
-
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-md-5">
-        <h6>1.日常で気になった言葉をコレクションしよう</h6>
-      </div>
-      <div class="col-md-5">
-        <img src="images/no_image_md.jpg" alt="no_image">
-      </div>
+</div>
+<div class="container-fluid bg-light">
+  <div class="row">
+    <div class="col-md-5">
+      <h3>1.日常で気になったことばをコレクションしよう</h3>
     </div>
-
-    <div class="row mb-5">
-      <div class="col-md-5">
-        <h6>2.コレクションした言葉をふとした時に確認</h6>
-      </div>
-      <div class="col-md-5">
-        <img src="images/no_image_md.jpg" alt="no_image">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-5">
-        <h6>3.コレクションした言葉をみんなでシェアできる</h6>
-      </div>
-      <div class="col-md-5">
-        <img src="images/no_image_md.jpg" alt="no_image">
-      </div>
+    <div class="col-md-7">
+      <img class="img-fluid" src="images/top_image_1.jpg" alt="top_image_1">
     </div>
   </div>
+  <hr class="border border-secondary my-5">
+  <div class="row">
+    <div class="col-md-5 order-md-2">
+      <h3>2.コレクションしたことばをふとした時に確認</h3>
+    </div>
+    <div class="col-md-7 order-md-1">
+      <img class="img-fluid" src="images/top_image_2.jpg" alt="top_image_2">
+    </div>
+  </div>
+  <hr class="border border-secondary my-5">
+  <div class="row">
+    <div class="col-md-5">
+      <h3>3.コレクションしたことばをみんなでシェアできる</h3>
+    </div>
+    <div class="col-md-7">
+      <img class="img-fluid" src="images/top_image_3.jpg" alt="top_image_3">
+    </div>
+  </div>
+</div>
 @endsection
