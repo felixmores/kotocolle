@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     {{-- フッター用CSS --}}
     <link rel="stylesheet" href="{{ asset('css/Bootstrap-sticky-footer.css') }}" type="text/css">
+    {{-- ジャンボトロン用CSS --}}
     <style>
       .jumbotron {
         background-image: url('images/top_background.jpg');
@@ -75,9 +76,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-center text-light">Copy right @ 
-          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">GitHub by kakedashi</a></u>
-        </p>
+        <p class="text-center text-light">Portfolio by kakedashi</p>
       </div>
     </footer>
     

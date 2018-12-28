@@ -77,9 +77,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-center text-light">Copy right @ 
-          <u><a class="text-light" href="https://github.com/kakedashi" target="_blank">GitHub by kakedashi</a></u>
-        </p>
+        <p class="text-center text-light">Portfolio by kakedashi</p>
       </div>
     </footer>
     
