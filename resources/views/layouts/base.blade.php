@@ -76,7 +76,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-center text-light">Portfolio by kakedashi</p>
+        <p class="text-center text-light">Developed by kakedashi</p>
       </div>
     </footer>
     
