@@ -8,7 +8,13 @@ use App\Models\User;
 
 class IndexController extends Controller
 {
-    //LPの表示
+    /**
+     * トップページの表示
+     * ユーザーの認証状態と権限別にトップページを表示
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
+     */
     public function index() {
         if (Auth::check()) {
             $admin_flag = User::where('id', Auth::id())->value('admin_flag');

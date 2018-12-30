@@ -12,14 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     {{-- フッター用CSS --}}
     <link rel="stylesheet" href="{{ asset('css/Bootstrap-sticky-footer.css') }}" type="text/css">
-    {{-- ジャンボトロン用CSS --}}
-    <style>
-      .jumbotron {
-        background-image: url('images/top_background.jpg');
-        background-size: cover;
-      }
-    </style>
-    <title>@yield('title')</title>
+    <title>エラーページ</title>
   </head>
   <body>
     <header>
@@ -71,7 +64,15 @@
     </header>
     
     <main>
-        @yield('content')
+      <div class="container">
+        <div class="card mt-5">
+          <div class="card-header p-4 h3 text-center text-light bg-warning mb-0">@yield('error_title')</div>
+          <div class="card-body border border-top-0 border-warning">
+            <h4 class="card-title">@yield('error_message')</h4>
+            <p class="card-text">@yield('error_text')</p>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="footer">

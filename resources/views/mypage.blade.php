@@ -4,9 +4,12 @@
 
 @section('content')
   <div class="container">
-    <div class="card border border-primary mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-primary">マイワード</div>
-      <div class="card-body">
+    {{-- カード本体 --}}
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-primary mb-0">マイワード</div>
+      <div class="card-body border border-top-0 border-primary">
+
+        {{-- テーブル本体 --}}
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
@@ -17,7 +20,10 @@
           <tbody>
           @foreach ($my_words as $my_word)
             <tr>
+              {{-- 言葉 --}}
               <td><a href="{{ action('WordController@word_content_index', ['user_id' => $my_word->user_id, 'word_id' => $my_word->id]) }}">{{$my_word->word}}</a></td>
+
+              {{-- ランク --}}
               @switch($my_word->lank)
                 @case(1)
                   <td>金言</td>
@@ -38,12 +44,13 @@
       </div>
     </div>
 
+    {{-- 言葉登録画面へのボタン --}}
     <form action="{{ action('WordController@add_word_index') }}" method="GET">
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-lg my-4 mx-auto d-block">新しい言葉を登録</button>
       </div>
     </form>
     
-    {{ $my_words->links() }}
+    <div class="pb-2">{{ $my_words->links() }}</div>
   </div>
 @endsection

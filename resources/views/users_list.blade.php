@@ -4,9 +4,12 @@
 
 @section('content')
   <div class="container">
-    <div class="card border border-danger mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-danger">登録ユーザー一覧</div>
-      <div class="card-body">
+    {{-- カード本体 --}}
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-danger mb-0">登録ユーザー一覧</div>
+      <div class="card-body border border-top-0 border-danger">
+
+        {{-- テーブル本体 --}}
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
@@ -20,14 +23,23 @@
           <tbody>
           @foreach ($users_list as $userinfo)
             <tr>
+              {{-- ユーザーID --}}
               <td>{{ $userinfo->id }}</td>
+
+              {{-- ユーザー名 --}}
               <td><a href="{{ action('WordController@words_list', ['user_id' => $userinfo->id]) }}">{{ $userinfo->name }}</a></td>
+              
+              {{-- メールアドレス --}}
               <td>{{ $userinfo->email }}</td>
+
+              {{-- 退会日時 --}}
               @if ($userinfo->deleted_at)
               <td>{{ $userinfo->deleted_at }}</td>
               @else
               <td>利用中</td>
               @endif
+
+              {{-- 退会ボタン --}}
               @if (!($userinfo->deleted_at))
               <form action="{{ action('UserController@users_list_delete') }}" method="POST">
                 {{ csrf_field() }}
@@ -43,6 +55,6 @@
         </table>
       </div>
     </div>  
-    {{ $users_list->links() }}
+    <div class="py-3">{{ $users_list->links() }}</div>
   </div>
 @endsection

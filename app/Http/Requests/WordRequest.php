@@ -31,6 +31,11 @@ class WordRequest extends FormRequest
         ];
     }
 
+    /**
+     * バリデーションメッセージ
+     * 
+     * @return array
+     */
     public function messages() {
         return [
             'word.max' => '言葉は30文字までです。',

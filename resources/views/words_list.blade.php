@@ -4,9 +4,12 @@
 
 @section('content')
   <div class="container">
-    <div class="card border border-danger mt-5">
-      <div class="card-header p-4 h3 text-center text-light bg-danger">言葉一覧</div>
-      <div class="card-body">
+    {{-- カード本体 --}}
+    <div class="card mt-5">
+      <div class="card-header p-4 h3 text-center text-light bg-danger mb-0">言葉一覧</div>
+      <div class="card-body border border-top-0 border-danger">
+
+        {{-- テーブル本体 --}}
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
@@ -19,8 +22,13 @@
           <tbody>
           @foreach ($words_list as $wordinfo)
             <tr>
+              {{-- 言葉ID --}}
               <td><a href="{{ action('WordController@word_content_index', ['user_id' => $wordinfo->user_id, 'word_id' => $wordinfo->id]) }}">{{ $wordinfo->id }}</a></td>
+              
+              {{-- 言葉 --}}
               <td>{{ $wordinfo->word }}</td>
+
+              {{-- ランク --}}
               @switch($wordinfo->lank)
                 @case(1)
                   <td>金言</td>
@@ -34,6 +42,8 @@
                 @default
                   <td>ランクなし</td>
               @endswitch
+
+              {{-- 公開状態 --}}
               @if ($wordinfo->share_flag == 1)
               <td>公開中</td>
               @else
@@ -45,6 +55,6 @@
         </table>
       </div>
     </div>  
-    {{ $words_list->links() }}
+    <div class="mt-3">{{ $words_list->links() }}</div>
   </div>
 @endsection
