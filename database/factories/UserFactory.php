@@ -25,3 +25,8 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
 $factory->state(App\Models\User::class, '管理者' ,function (Faker $faker) {
     return ['admin_flag' => 1];
 });
+
+$factory->state(App\Models\User::class, '画像あり' ,function (Faker $faker) {
+    $image_name = 'example.jpg';
+    return ['user_image' => $image_name];
+});

@@ -17,8 +17,6 @@ class IndexTest extends TestCase
      */
     public function testAccessIndex()
     {
-        $this->assertTrue(true);
-
         $response = $this->get('/');
         $response->assertSuccessful();
 
