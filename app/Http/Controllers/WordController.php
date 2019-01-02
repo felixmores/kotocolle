@@ -120,6 +120,8 @@ class WordController extends Controller
                 }
                 $comment_all = Comment::where('word_id', $word_id)->get();
                 return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'admin_flag' => $admin_flag, 'login_id' => $login_id, 'comment_all' => $comment_all]);
+            } else {
+                return redirect()->action('WordController@mypage_index');
             }
         } else {
             return redirect()->action('WordController@mypage_index');

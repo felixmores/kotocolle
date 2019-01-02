@@ -30,3 +30,15 @@ $factory->state(App\Models\User::class, '画像あり' ,function (Faker $faker) 
     $image_name = 'example.jpg';
     return ['user_image' => $image_name];
 });
+
+$factory->state(App\Models\User::class, 'id:2' ,function (Faker $faker) {
+    return ['id' => 2];
+});
+
+$factory->state(App\Models\User::class, 'id:3' ,function (Faker $faker) {
+    return ['id' => 3];
+});
+
+$factory->state(App\Models\User::class, 'id:4' ,function (Faker $faker) {
+    return ['id' => 4];
+});
