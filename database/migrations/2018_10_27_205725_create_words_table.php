@@ -19,7 +19,7 @@ class CreateWordsTable extends Migration
             $table->index('word');
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->smallInteger('lank')->nullable();
+            $table->smallInteger('lank')->default(0);
             $table->index('lank');
             $table->text('memo')->nullable();
             $table->string('word_image')->nullable();

@@ -28,9 +28,10 @@ class CommentController extends Controller
      */
     public function comment_add(Request $request, $user_id, $word_id) {
         $rules = [
-            'comment' => 'required|max:150',
+            'comment' => 'required|min:1|max:150',
         ];
         $messages = [
+            'comment.min' => 'コメントは1文字以上入力してください。',
             'comment.max' => 'コメントは150文字以内で入力してください。',
         ];
         $validator = Validator::make($request->only(['comment']), $rules, $messages);
