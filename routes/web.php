@@ -48,8 +48,3 @@ Route::get('/users', 'UserController@users_list_index');
 Route::post('/users', 'UserController@users_list_delete');
 //登録ユーザーの言葉一覧画面を表示
 Route::get('/users/words/{user_id}', 'WordController@words_list');
-
-//HTTPエラーページテスト
-/*Route::get('errors/{code}', function ($code) {
-    return abort($code);
-});*/
