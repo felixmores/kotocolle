@@ -1,2 +1,4 @@
 *
+!user_images/
+!user_images/no_user_image.gif
 !.gitignore
