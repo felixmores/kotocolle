@@ -11,7 +11,11 @@
 
         {{-- ユーザー画像 --}}
         <figure class="figure row mb-4">
+          @if ($image_name !== 'no_user_image.gif')
           <img src="/storage/user_images/{{ $image_name }}" class="img-thumbnail rounded mx-auto w-25 h-25">
+          @else
+          <img src="/images/{{ $image_name }}" class="img-thumbnail rounded mx-auto w-25 h-25">
+          @endif
         </figure>
 
         {{-- ユーザー名 --}}

@@ -1,5 +1,5 @@
+!user_images/
 user_images/*
-!user_images/no_user_image.gif
+!word_images/
 word_images/*
-!word_images/no_word_image.jpg
 !.gitignore

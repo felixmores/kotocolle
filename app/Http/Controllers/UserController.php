@@ -30,8 +30,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function userinfo_index(Request $request) {
-        if ($request->user()->user_image) {
-            $image_name = $request->user()->user_image;
+        $login_user_image = $request->user()->user_image;
+        $user_image_exist = Storage::disk('local')->exists($login_user_image);
+        if ($login_user_image && $user_image_exist) {
+            $image_name = $login_user_image;
         } else {
             $image_name = 'no_user_image.gif';
         }
