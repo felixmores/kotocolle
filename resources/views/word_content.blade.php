@@ -16,7 +16,11 @@
 
         {{-- 画像 --}}
         <figure class="figure row mb-4">
+          @if ($image_name !== 'no_word_image.jpg')
           <img src="/storage/word_images/{{ $image_name }}" class="img-thumbnail mx-auto d-block">
+          @else
+          <img src="/images/{{ $image_name }}" class="img-thumbnail mx-auto d-block">
+          @endif
         </figure>
 
         {{-- ランク --}}

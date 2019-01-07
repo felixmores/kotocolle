@@ -113,8 +113,10 @@ class WordController extends Controller
             $admin_flag = $request->user()->admin_flag;
             $login_id = $request->user()->id;
             if (($login_id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $admin_flag === 1) {
-                if ($word_content->word_image) {
-                    $image_name = $word_content->word_image;
+                $word_image = $word_content->word_image;
+                $word_image_exist = Storage::disk('local')->exists($word_image);
+                if ($word_image && $word_image_exist) {
+                    $image_name = $word_image;
                 } else {
                     $image_name = 'no_word_image.jpg';
                 }
