@@ -123,7 +123,7 @@
       {{ csrf_field() }}
       @foreach ($comment_all as $comment_content)
       <ul class="list-group mb-3">
-        <li class="list-group-item">{{ $comment_content->user->name }}</li>
+        <li class="list-group-item">{{ $comment_content->name }}</li>
         <li class="list-group-item">{{ $comment_content->comment }}</li>
         <li class="list-group-item mb-4">
           投稿日時：{{ $comment_content->created_at }}

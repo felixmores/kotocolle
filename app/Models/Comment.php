@@ -12,13 +12,4 @@ class Comment extends Model
      * @var array
      */
     protected $guarded = ['id'];
-
-    /**
-     * コメントに紐づくユーザーを取得
-     * 
-     * @return Comment
-     */
-    public function user() {
-        return $this->belongsTo('App\Models\User');
-    }
 }
