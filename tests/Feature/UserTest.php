@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class UserTest extends TestCase
@@ -29,7 +30,12 @@ class UserTest extends TestCase
         $user = factory(User::class)->states('画像あり')->create();
         $response = $this->actingAs($user)->get('/userinfo');
         $response->assertSuccessful();
-        $response->assertViewHas('image_name', 'example.jpg');
+        $user_image_exist = Storage::disk('local')->exists('example.jpg');
+        if ($user_image_exist) {
+            $response->assertViewHas('image_name', 'example.jpg');
+        } else {
+            $response->assertViewHas('image_name', 'no_user_image.gif');
+        }
     }
 
     /**
