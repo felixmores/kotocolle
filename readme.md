@@ -40,16 +40,16 @@
 
 ### 日常で気になったことばをコレクションしましょう
 
-![マイワード](https://github.com/kakedashi/kotocolle/blob/git_images/top_image_1.jpg)
+![マイワード](https://github.com/felixmores/kotocolle/blob/git_images/top_image_1.jpg)
 
 ### コレクションしたことばをふとした時に確認できます
 
-![言葉の確認](https://github.com/kakedashi/kotocolle/blob/git_images/top_image_2.jpg)
+![言葉の確認](https://github.com/felixmores/kotocolle/blob/git_images/top_image_2.jpg)
 
 ### コレクションしたことばをみんなでシェアできます
 
-![みんなの言葉](https://github.com/kakedashi/kotocolle/blob/git_images/top_image_3.jpg)
+![みんなの言葉](https://github.com/felixmores/kotocolle/blob/git_images/top_image_3.jpg)
 
 ---
 
-All right reserved by kakedashi
+All right reserved by felixmores
