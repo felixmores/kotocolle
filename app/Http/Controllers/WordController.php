@@ -111,14 +111,21 @@ class WordController extends Controller
         if ($word_content) {
             $admin_flag = $request->user()->admin_flag;
             $login_id = $request->user()->id;
+            $env_check = config('envswitch.env_production');
             if (($login_id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $admin_flag === 1) {
                 $word_image = $word_content->word_image;
-                $word_image_exist = Storage::disk('local')->exists('public/word_images/'.$word_image);
+                if ($env_check === 'pro') {
+                    $word_image_exist = false;
+                } else {
+                    $word_image_exist = Storage::disk('local')->exists('public/word_images/'.$word_image);
+                }
+
                 if ($word_image && $word_image_exist) {
                     $image_name = $word_image;
                 } else {
                     $image_name = 'no_word_image.jpg';
                 }
+
                 $comment_all = DB::table('comments')->select('comments.id', 'comment', 'user_id', 'comments.created_at', 'users.name')
                     ->where('word_id', $word_id)
                     ->join('users', function ($join) {
