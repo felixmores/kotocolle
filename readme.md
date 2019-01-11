@@ -52,4 +52,4 @@
 
 ---
 
-All right reserved by felixmores
+All rights reserved by felixmores

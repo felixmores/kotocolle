@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function userinfo_index(Request $request) {
         $login_user_image = $request->user()->user_image;
-        $user_image_exist = Storage::disk('local')->exists($login_user_image);
+        $user_image_exist = Storage::disk('local')->exists('public/user_images/'.$login_user_image);
         if ($login_user_image && $user_image_exist) {
             $image_name = $login_user_image;
         } else {
