@@ -31,9 +31,9 @@ class UserController extends Controller
      */
     public function userinfo_index(Request $request) {
         $login_user_image = $request->user()->user_image;
-        $env_check = config('envswitch.env_production');
-        if ($env_check === 'pro') {
-            $user_image_exist = false;
+        $env_check = config('envswitch.env_flag');
+        if ($env_check === 'heroku') {
+            $user_image_exist = Storage::disk('heroku')->exists('user_images/'.$login_user_image);
         } else {
             $user_image_exist = Storage::disk('public')->exists('user_images/'.$login_user_image);
         }
@@ -43,7 +43,7 @@ class UserController extends Controller
         } else {
             $image_name = 'no_user_image.gif';
         }
-        return view('userinfo_index', ['name' => $request->user()->name, 'email' => $request->user()->email, 'image_name' => $image_name]);
+        return view('userinfo_index', ['name' => $request->user()->name, 'email' => $request->user()->email, 'image_name' => $image_name, 'env_check' => $env_check]);
     }
 
     /**
@@ -75,8 +75,11 @@ class UserController extends Controller
         $old_image_name = $user->user_image;
             
         if ($request->hasfile('user_image')) {
-            if ($old_image_name) {
-                Storage::delete('user_images/'.$old_image_name);
+            $env_check = config('envswitch.env_flag');
+            if ($old_image_name && $env_check === 'heroku') {
+                Storage::disk('heroku')->delete('user_images/'.$old_image_name);
+            } elseif ($old_image_name && $env_check !== 'heroku') {
+                Storage::disk('public')->delete('user_images/'.$old_image_name);
             }
             $image_path = $request->user_image->store('user_images');
             $user->user_image = basename($image_path);

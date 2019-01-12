@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'public'),
+    'default' => env('FILESYSTEM_DRIVER', 'heroku'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +52,16 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+        /**
+         * heroku用にpublicに直接画像を保存する
+         */
+        'heroku' => [
+            'driver' => 'local',
+            'root' => public_path('/uploads'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 
