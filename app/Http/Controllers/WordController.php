@@ -82,7 +82,7 @@ class WordController extends Controller
             $word->memo = $request->memo;
 
             if ($request->hasfile('word_image')) {
-                $image_path = $request->word_image->store('public/word_images');
+                $image_path = $request->word_image->store('word_images');
                 $word->word_image = basename($image_path);
             } else {
                 $word->word_image = null;
@@ -117,7 +117,7 @@ class WordController extends Controller
                 if ($env_check === 'pro') {
                     $word_image_exist = false;
                 } else {
-                    $word_image_exist = Storage::disk('local')->exists('public/word_images/'.$word_image);
+                    $word_image_exist = Storage::disk('public')->exists('word_images/'.$word_image);
                 }
 
                 if ($word_image && $word_image_exist) {
@@ -154,7 +154,7 @@ class WordController extends Controller
         $word_content = Word::find($word_id);
         $word_image_name = $word_content->word_image;
         if ($word_image_name) {
-            Storage::delete('public/word_images/'.$word_image_name);
+            Storage::delete('word_images/'.$word_image_name);
         }
 
         $word_content->delete();
@@ -213,9 +213,9 @@ class WordController extends Controller
             
             if ($request->hasfile('word_image')) {
                 if ($old_image_name) {
-                    Storage::delete('public/word_images/'.$old_image_name);
+                    Storage::delete('word_images/'.$old_image_name);
                 }
-                $image_path = $request->word_image->store('public/word_images');
+                $image_path = $request->word_image->store('word_images');
                 $word->word_image = basename($image_path);
             } elseif ($old_image_name) {
                 $word->word_image = $old_image_name;

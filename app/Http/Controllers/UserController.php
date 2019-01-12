@@ -35,7 +35,7 @@ class UserController extends Controller
         if ($env_check === 'pro') {
             $user_image_exist = false;
         } else {
-            $user_image_exist = Storage::disk('local')->exists('public/user_images/'.$login_user_image);
+            $user_image_exist = Storage::disk('public')->exists('user_images/'.$login_user_image);
         }
 
         if ($login_user_image && $user_image_exist) {
@@ -76,9 +76,9 @@ class UserController extends Controller
             
         if ($request->hasfile('user_image')) {
             if ($old_image_name) {
-                Storage::delete('public/user_images/'.$old_image_name);
+                Storage::delete('user_images/'.$old_image_name);
             }
-            $image_path = $request->user_image->store('public/user_images');
+            $image_path = $request->user_image->store('user_images');
             $user->user_image = basename($image_path);
         } elseif ($old_image_name) {
             $user->user_image = $old_image_name;
