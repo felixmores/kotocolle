@@ -82,7 +82,12 @@ class WordController extends Controller
             $word->memo = $request->memo;
 
             if ($request->hasfile('word_image')) {
-                $image_path = $request->word_image->store('word_images');
+                $env_check = config('envswitch.env_flag');
+                if ($env_check === 'heroku') {
+                    $image_path = $request->word_image->store('word_images', 'heroku');
+                } else {
+                    $image_path = $request->word_image->store('word_images', 'public');
+                }
                 $word->word_image = basename($image_path);
             } else {
                 $word->word_image = null;
@@ -111,11 +116,11 @@ class WordController extends Controller
         if ($word_content) {
             $admin_flag = $request->user()->admin_flag;
             $login_id = $request->user()->id;
-            $env_check = config('envswitch.env_production');
             if (($login_id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $admin_flag === 1) {
                 $word_image = $word_content->word_image;
-                if ($env_check === 'pro') {
-                    $word_image_exist = false;
+                $env_check = config('envswitch.env_flag');
+                if ($env_check === 'heroku') {
+                    $word_image_exist = Storage::disk('heroku')->exists('word_images/'.$word_image);
                 } else {
                     $word_image_exist = Storage::disk('public')->exists('word_images/'.$word_image);
                 }
@@ -132,7 +137,7 @@ class WordController extends Controller
                         $join->on('comments.user_id', '=', 'users.id')
                                 ->whereNull('users.deleted_at');
                 })->get();
-                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'admin_flag' => $admin_flag, 'login_id' => $login_id, 'comment_all' => $comment_all]);
+                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'admin_flag' => $admin_flag, 'login_id' => $login_id, 'comment_all' => $comment_all, 'env_check' => $env_check]);
             } else {
                 return redirect()->action('WordController@mypage_index');
             }
@@ -154,7 +159,12 @@ class WordController extends Controller
         $word_content = Word::find($word_id);
         $word_image_name = $word_content->word_image;
         if ($word_image_name) {
-            Storage::delete('word_images/'.$word_image_name);
+            $env_check = config('envswitch.env_flag');
+            if ($env_check === 'heroku') {
+                Storage::disk('heroku')->delete('word_images/'.$word_image_name);
+            } else {
+                Storage::disk('public')->delete('word_images/'.$word_image_name);
+            }
         }
 
         $word_content->delete();
@@ -213,7 +223,12 @@ class WordController extends Controller
             
             if ($request->hasfile('word_image')) {
                 if ($old_image_name) {
-                    Storage::delete('word_images/'.$old_image_name);
+                    $env_check = config('envswitch.env_flag');
+                    if ($env_check === 'heroku') {
+                        Storage::disk('heroku')->delete('word_images/'.$old_image_name);
+                    } else {
+                        Storage::disk('public')->delete('word_images/'.$old_image_name);
+                    }
                 }
                 $image_path = $request->word_image->store('word_images');
                 $word->word_image = basename($image_path);
