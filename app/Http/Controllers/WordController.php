@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Word;
 use App\Http\Requests\WordRequest;
@@ -17,7 +18,7 @@ class WordController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('share_word_index', 'word_content_index');
     }
     
     /**
@@ -114,35 +115,52 @@ class WordController extends Controller
     public function word_content_index(Request $request, $user_id, $word_id) {
         $word_content = Word::where('id', $word_id)->where('user_id', $user_id)->first();
         if ($word_content) {
-            $admin_flag = $request->user()->admin_flag;
-            $login_id = $request->user()->id;
-            if (($login_id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $admin_flag === 1) {
-                $word_image = $word_content->word_image;
-                $env_check = config('envswitch.env_flag');
-                if ($env_check === 'heroku') {
-                    $word_image_exist = Storage::disk('heroku')->exists('word_images/'.$word_image);
-                } else {
-                    $word_image_exist = Storage::disk('public')->exists('word_images/'.$word_image);
-                }
-
-                if ($word_image && $word_image_exist) {
-                    $image_name = $word_image;
-                } else {
-                    $image_name = 'no_word_image.jpg';
-                }
-
-                $comment_all = DB::table('comments')->select('comments.id', 'comment', 'user_id', 'comments.created_at', 'users.name')
-                    ->where('word_id', $word_id)
-                    ->join('users', function ($join) {
-                        $join->on('comments.user_id', '=', 'users.id')
-                                ->whereNull('users.deleted_at');
-                })->get();
-                return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'admin_flag' => $admin_flag, 'login_id' => $login_id, 'comment_all' => $comment_all, 'env_check' => $env_check]);
+            if (Auth::check()) {
+                $admin_flag = $request->user()->admin_flag;
+                $login_id = $request->user()->id;
             } else {
-                return redirect()->action('WordController@mypage_index');
+                /**
+                 * 未ログインの場合、公開フラグを0、ログインユーザーのIDを0とする
+                 * (ログイン時にはあり得ない値)
+                 */
+                $admin_flag = 0;
+                $login_id = 0;
             }
+                if (($login_id == $user_id && $word_content->share_flag == 0) || $word_content->share_flag == 1 || $admin_flag === 1) {
+                    $word_image = $word_content->word_image;
+                    $env_check = config('envswitch.env_flag');
+                    if ($env_check === 'heroku') {
+                        $word_image_exist = Storage::disk('heroku')->exists('word_images/'.$word_image);
+                    } else {
+                        $word_image_exist = Storage::disk('public')->exists('word_images/'.$word_image);
+                    }
+    
+                    if ($word_image && $word_image_exist) {
+                        $image_name = $word_image;
+                    } else {
+                        $image_name = 'no_word_image.jpg';
+                    }
+    
+                    $comment_all = DB::table('comments')->select('comments.id', 'comment', 'user_id', 'comments.created_at', 'users.name')
+                        ->where('word_id', $word_id)
+                        ->join('users', function ($join) {
+                            $join->on('comments.user_id', '=', 'users.id')
+                                    ->whereNull('users.deleted_at');
+                    })->get();
+                    return view('word_content', ['word_content' => $word_content, 'image_name' => $image_name, 'admin_flag' => $admin_flag, 'login_id' => $login_id, 'comment_all' => $comment_all, 'env_check' => $env_check]);
+                } else {
+                    if (Auth::check()) {
+                        return redirect()->action('WordController@mypage_index');
+                    } else {
+                        return redirect()->action('WordController@share_word_index');
+                    }
+                }
         } else {
-            return redirect()->action('WordController@mypage_index');
+            if (Auth::check()) {
+                return redirect()->action('WordController@mypage_index');
+            } else {
+                return redirect()->action('WordController@share_word_index');
+            }
         }
     }
 

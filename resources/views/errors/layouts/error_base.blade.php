@@ -11,7 +11,7 @@
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     {{-- フッター用CSS --}}
-    <link rel="stylesheet" href="{{ secure_asset('css/Bootstrap-sticky-footer.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/Bootstrap-sticky-footer.css') }}" type="text/css">
     <title>エラーページ</title>
   </head>
   <body>
@@ -30,6 +30,9 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
           <ul class="navbar-nav">
             @guest
+              <li class="nav-item">
+                <a class="nav-link text-light mr-5" href="{{ action('WordController@share_word_index') }}">みんなの言葉</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link text-light mr-5" href="{{ route('register') }}">新規登録</a>
               </li>
