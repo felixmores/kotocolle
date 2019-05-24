@@ -52,9 +52,11 @@ class WordTest extends TestCase
      * @return void
      */
     public function testWordContentIndex() {
-        $response = $this->get('/word_content/1/1');
-        $response->assertStatus(302);
-        $response->assertRedirect('/login');
+
+        $user_3 = factory(User::class)->states('id:3')->create();
+        $word_3 = factory(Word::class)->states('id:3, user_id:3, share_flag:1')->create();
+        $response = $this->get('/word_content/3/3');
+        $response->assertSuccessful();
 
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/word_content/1/1');
@@ -65,8 +67,6 @@ class WordTest extends TestCase
         $response = $this->actingAs($user_2)->get('/word_content/2/2');
         $response->assertSuccessful();
 
-        $user_3 = factory(User::class)->states('id:3')->create();
-        $word_3 = factory(Word::class)->states('id:3, user_id:3, share_flag:1')->create();
         $response = $this->actingAs($user_2)->get('/word_content/3/3');
         $response->assertSuccessful();
 
@@ -107,8 +107,7 @@ class WordTest extends TestCase
      */
     public function testShareWord() {
         $response = $this->get('/shareword');
-        $response->assertStatus(302);
-        $response->assertRedirect('/login');
+        $response->assertSuccessful();
 
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get('/shareword');
